@@ -47,5 +47,3 @@ class CommentsPage extends StatelessWidget {
     );
   }
 }
-// TODO このページいらなくね？
-// 
