@@ -15,7 +15,7 @@ class MainPage extends ConsumerWidget {
     HomeView(),
     const SearchPage(),
     const PostView(),
-    const BoxView(),
+    const CartView(),
     const ProfilePage(),
   ];
 

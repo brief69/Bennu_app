@@ -1,5 +1,5 @@
 
-
+// TODO: #10 media_item_view.dartの更新に併せて変更する
 // home_view.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

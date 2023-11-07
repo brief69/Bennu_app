@@ -61,6 +61,9 @@ class BoxView extends ConsumerWidget {
   }
 }
 
+// TODO: #12 このページで用いるwidget　→ BuyButton,Counter,Price,gridview,
+
+// 
 
 // stockの数は、左にマイナス、右にプラス、中心に現在の数が表示される。0にすると、商品がカートから削除される。
 // カートの中身の合計金額は、カートの中身の商品の合計金額の合計金額を表示する

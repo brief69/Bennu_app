@@ -69,7 +69,7 @@ class MediaItemViewState extends State<MediaItemView> {
             child: VideoPlayer(_controller),
           ),
         ),
-        // 動画の上に重ねるUIを配置します。
+        // TODO #11:動画の上に重ねるUIの配置を書いて
       // 現在は一旦、動画の右下に「いいね」ボタンを配置してみる。
         Positioned(
           right: 10,
