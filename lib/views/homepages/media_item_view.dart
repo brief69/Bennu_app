@@ -10,21 +10,9 @@ import '../../viewmodels/media_viewmodel.dart';
 class MediaItemView extends StatefulWidget {
   // このビューに対応するViewModelを保持します。
   final MediaViewModel viewModel;
-
-  // コンストラクタで必要なパラメータを初期化します。
-  // (注: 引数が正しく渡されていません。nullを渡すことはできません。)
   const MediaItemView({
     required this.viewModel,
     Key? key,
-    required caption,
-    required itemlimit,
-    required postDate,
-    required likes,
-    required comments,
-    required shares,
-    required purchases,
-    required media,
-    required boxin
   }) : super(key: key);
 
   @override
@@ -98,7 +86,6 @@ class MediaReel extends StatefulWidget {
 
 // MediaReelのステートクラスを定義します。
 class MediaReelState extends State<MediaReel> {
-  // 各メディアアイテムビューのためのキーのリストを保持します。
   final List<GlobalKey<MediaItemViewState>> _keys = [];
 
   @override
@@ -116,6 +103,9 @@ class MediaReelState extends State<MediaReel> {
     return PageView.builder(
       itemCount: widget.viewModels.length,
       itemBuilder: (context, index) {
+        // 現在のViewModelを取得
+        final viewModel = widget.viewModels[index];
+
         // VisibilityDetectorを使用して、アイテムの可視性に応じて動画の再生と一時停止を制御します。
         return VisibilityDetector(
           key: Key('video-$index'),
@@ -127,8 +117,10 @@ class MediaReelState extends State<MediaReel> {
               _keys[index].currentState?.pause();
             }
           },
-          // コンストラクタの引数が不適切です。実際のパラメータを渡す必要があります。
-          child: MediaItemView(viewModel: widget.viewModels[index], key: _keys[index], caption: null, itemlimit: null, postDate: null, likes: null, comments: null, shares: null, purchases: null, media: null, boxin: null,),
+          child: MediaItemView(
+            key: _keys[index],
+            viewModel: viewModel,
+          ),
         );
       },
     );

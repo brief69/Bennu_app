@@ -19,6 +19,7 @@ class MediaViewModel {
   String get caption => media.caption;
   int get stock => media.stock;
   int get price => media.price;
+  int get relay => media.relay;
   
 
   List<dynamic> get mediaItems => media.mediaItems;

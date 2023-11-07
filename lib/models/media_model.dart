@@ -15,6 +15,7 @@ class MediaModel {
   final String caption;
   final int stock;
   final int price;
+  final int relay;
 
   MediaModel({
     required this.videoUrl,
@@ -28,6 +29,7 @@ class MediaModel {
     required this.caption,
     required this.stock,
     required this.price, required FirebaseFirestore firestore,
+    required this.relay,
   });
 
   get postDate => null;
