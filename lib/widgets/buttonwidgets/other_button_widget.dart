@@ -3,7 +3,7 @@
 // other_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../viewmodels/widgetsviewmodels/other_viewmodel.dart';
+import '../../viewmodels/widgetsviewmodels/other_viewmodel.dart';
 
 class OtherWidget extends StatelessWidget {
   const OtherWidget({Key? key}) : super(key: key);

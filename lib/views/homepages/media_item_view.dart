@@ -1,7 +1,7 @@
 
 
 // media_item_view.dart
-import 'package:bennu_app/widgets/like_button_widget.dart';
+import 'package:bennu_app/widgets/buttonwidgets/like_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';

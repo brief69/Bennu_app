@@ -12,7 +12,13 @@ class Product {
   final String name;
   final String imageUrl;
 
-  Product({required this.name, required this.imageUrl});
+  Product({required this.name, required this.imageUrl, required String id, required price, required quantity});
+
+  get totalPrice => '';
+
+  String? get id => '';
+
+  get quantity => '';
 }
 
 class SearchResult {

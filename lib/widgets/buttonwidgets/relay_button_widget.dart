@@ -3,8 +3,8 @@
 // relay_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/relay_model.dart';
-import '../viewmodels/widgetsviewmodels/relay_viewmodel.dart';
+import '../../models/relay_model.dart';
+import '../../viewmodels/widgetsviewmodels/relay_viewmodel.dart';
 
 
 class RelayWidget extends ConsumerWidget {

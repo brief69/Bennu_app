@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../viewmodels/widgetsviewmodels/price_viewmodel.dart';
+import '../../viewmodels/widgetsviewmodels/price_viewmodel.dart';
 
 
 class PriceWidget extends ConsumerWidget {

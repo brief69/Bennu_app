@@ -3,7 +3,7 @@
 // comments_page.dart
 import 'package:flutter/material.dart';
 import '../../models/comments.dart';
-import '../../widgets/comment_widget.dart';
+import '../../widgets/buttonwidgets/comment_button_widget.dart';
 
 
 class CommentsPage extends StatelessWidget {

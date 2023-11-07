@@ -23,7 +23,7 @@ class SearchViewModel extends StateNotifier<SearchResult> {
   Future<void> fetchSearchResults(String query) async {
     try {
       final sitesFuture = _fetchFromFirestore('sites', query, (data) => CustomContent(name: data['name'], imageUrl: data['imageUrl']));
-      final productsFuture = _fetchFromFirestore('products', query, (data) => Product(name: data['name'], imageUrl: data['imageUrl']));
+      final productsFuture = _fetchFromFirestore('products', query, (data) => Product(name: data['name'], imageUrl: data['imageUrl'], id: '', price: null, quantity: null));
       
       final List<CustomContent> sites = await sitesFuture;
       final List<Product> products = await productsFuture;

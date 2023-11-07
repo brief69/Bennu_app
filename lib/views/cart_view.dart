@@ -3,7 +3,7 @@
 // box_view.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../viewmodels/box_viewmodel.dart';
+import '../viewmodels/cart_viewmodel.dart';
 
 class BoxView extends ConsumerWidget {
   const BoxView({super.key});
@@ -15,7 +15,7 @@ class BoxView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         // appbarには、配送状況に応じて左から右に現在のステータスが表示されるようにする。
-        // 
+        // 配送apiは、別のモジュールで管理する。
       ),
       body: ListView.builder(
         itemCount: boxItems.length,

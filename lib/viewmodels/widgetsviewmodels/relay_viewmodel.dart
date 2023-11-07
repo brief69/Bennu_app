@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:bennu_app/widgets/relay_widget.dart';
+import 'package:bennu_app/widgets/buttonwidgets/relay_button_widget.dart';
 import '../../models/relay_model.dart'; 
 
 final relayViewModelProvider = ChangeNotifierProvider((ref) => RelayViewModel());

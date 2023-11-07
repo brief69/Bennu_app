@@ -2,7 +2,7 @@
 
 // in_cart_widget.dart
 import 'package:flutter/material.dart';
-import 'stock_widget.dart'; // StockWidgetをインポート
+import '../counter_widget.dart'; // StockWidgetをインポート
 
 class InCartWidget extends StatefulWidget {
   final int stock;
@@ -13,6 +13,8 @@ class InCartWidget extends StatefulWidget {
     required this.stock,
     required this.initialInCart,
   }) : super(key: key);
+  
+  get count => null;// TODO #3:
 
   @override
   InCartWidgetState createState() => InCartWidgetState();
@@ -54,10 +56,10 @@ class InCartWidgetState extends State<InCartWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: isExpanded
-            ? StockWidget(
-                currentStock: inCart,
-                maxStock: widget.stock,
-                onStockChanged: _updateInCart,
+            ? CountWidget(
+                currentCount: inCart,
+                maxCount: widget.count,
+                onCountChanged: _updateInCart,
               )
             : Center(
                 child: Text(
