@@ -7,7 +7,6 @@ class MediaViewModel {
   final MediaModel media;
 
   MediaViewModel(this.media);
-
   String get videoUrl => media.videoUrl;
   String get userIcon => media.userIcon;
   int get likes => media.likes;
@@ -20,7 +19,12 @@ class MediaViewModel {
   int get stock => media.stock;
   int get price => media.price;
   int get relay => media.relay;
+
   
 
   List<dynamic> get mediaItems => media.mediaItems;
+
+  get postId => null;
+
+  get userId => null;
 }

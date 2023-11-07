@@ -1,6 +1,7 @@
 
 
 // media_item_view.dart
+import 'package:bennu_app/widgets/like_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -68,7 +69,16 @@ class MediaItemViewState extends State<MediaItemView> {
             child: VideoPlayer(_controller),
           ),
         ),
-        // ... その他のUI要素
+        // 動画の上に重ねるUIを配置します。
+      // 現在は一旦、動画の右下に「いいね」ボタンを配置してみる。
+        Positioned(
+          right: 10,
+          bottom: 10,
+          child: LikeButtonWidget(
+            postId: widget.viewModel.postId, // ViewModelからpostIdを取得
+            userId: widget.viewModel.userId, // ViewModelからuserIdを取得
+          ),
+        ),
       ],
     );
   }

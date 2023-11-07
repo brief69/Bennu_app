@@ -32,17 +32,6 @@ class HomeViewState extends State<HomeView> {
         firestore: widget.firestore,
         // 以下の各フィールドは、Firestoreのドキュメントに対応したキーを使用して値を取得しています。
         // もしデータが存在しない場合はデフォルト値を使用します。
-        videoUrl: postData['media'] ?? '',
-        userIcon: postData['userIcon'] ?? '',
-        likes: postData['likes'] ?? 0,
-        comments: postData['comments'] ?? 0,
-        other: postData['other'] ?? '',
-        buy: postData['Buy'] ?? 0,
-        incart: postData['incart'] ?? 0,
-        shares: postData['shares'] ?? 0,
-        caption: postData['caption'] ?? '',
-        stock: postData['stock'] ?? 0,
-        price: postData['price'] ?? 0,
       ),
     );
   }
@@ -80,15 +69,6 @@ class HomeViewState extends State<HomeView> {
               // 各ドキュメントからMediaItemViewを作成し、リストに追加します。
               mediaItems.add(MediaItemView(
                 // Firestoreドキュメントの各フィールドからウィジェットにデータを渡します。
-                caption: doc['caption'],
-                itemlimit: doc['itemlimit'],
-                postDate: doc['postDate'],
-                likes: doc['likes'],
-                comments: doc['comments'],
-                shares: doc['shares'],
-                purchases: doc['Buy'],
-                media: doc['media'],
-                boxin: doc['boxin'],
                 // _createViewModelFromDocument関数を使用してViewModelを生成し、ウィジェットに渡します。
                 viewModel: _createViewModelFromDocument(doc),
               ));

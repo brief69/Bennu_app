@@ -16,6 +16,9 @@ class MediaModel {
   final int stock;
   final int price;
   final int relay;
+  final String postId; // 投稿のID
+  final String userId; // ユーザーのID
+
 
   MediaModel({
     required this.videoUrl,
@@ -30,6 +33,8 @@ class MediaModel {
     required this.stock,
     required this.price, required FirebaseFirestore firestore,
     required this.relay,
+    required this.postId,
+    required this.userId,
   });
 
   get postDate => null;
