@@ -2,6 +2,7 @@
 
 
 // registration_view.dart
+// TODO: #18 themeを使用
 import 'package:bennu_app/viewmodels/registration_viewmodel.dart';
 import 'package:flutter/material.dart';
 

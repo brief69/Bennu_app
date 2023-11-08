@@ -14,6 +14,7 @@ class CartView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        // 
         // TODO: #13 appbarには、配送状況に応じて左から右に現在のステータスが表示されるようにする。配送apiは、別のモジュールで管理する。
         // TODO: #16 delivery_widgetをここで呼び出す
       ),

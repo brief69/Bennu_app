@@ -34,7 +34,7 @@ class MainPage extends ConsumerWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home, color: Colors.white),
-              backgroundColor: Color.fromARGB(255, 30, 1, 1),
+              backgroundColor: Color.fromARGB(255, 30, 1, 1),// TODO #17:themeに変更
               label: 'HOME',
             ),
             BottomNavigationBarItem(
