@@ -5,22 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/cart_viewmodel.dart';
 
-class BoxView extends ConsumerWidget {
-  const BoxView({super.key});
+class CartView extends ConsumerWidget {
+  const CartView({super.key});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final boxItems = ref.watch(boxProvider);
+    final cartItems = ref.watch(cartProvider);
 
     return Scaffold(
       appBar: AppBar(
-        // appbarには、配送状況に応じて左から右に現在のステータスが表示されるようにする。
-        // 配送apiは、別のモジュールで管理する。
+        // TODO: #13 appbarには、配送状況に応じて左から右に現在のステータスが表示されるようにする。配送apiは、別のモジュールで管理する。
       ),
       body: ListView.builder(
-        itemCount: boxItems.length,
+        itemCount: cartItems.length,
         itemBuilder: (ctx, index) {
-          final product = boxItems[index];
+          final product = cartItems[index];
           return ListTile(
             leading: Image.network(product.imageUrl),
             title: Text(product.name),
@@ -30,20 +29,20 @@ class BoxView extends ConsumerWidget {
                 IconButton(
                   icon: const Icon(Icons.remove),
                   onPressed: () {
-                    ref.read(boxProvider.notifier).updateQuantity(product.id, -1);
+                    ref.read(cartProvider.notifier).updateQuantity(product.id, -1);
                   },
                 ),
                 Text("${product.quantity}"),
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: () {
-                    ref.read(boxProvider.notifier).updateQuantity(product.id, 1);
+                    ref.read(cartProvider.notifier).updateQuantity(product.id, 1);
                   },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
-                    ref.read(boxProvider.notifier).removeProduct(product.id);
+                    ref.read(cartProvider.notifier).removeProduct(product.id);
                   },
                 ),
               ],
@@ -54,7 +53,7 @@ class BoxView extends ConsumerWidget {
       bottomNavigationBar: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text("合計: ¥${ref.read(boxProvider.notifier).totalAmount.toStringAsFixed(2)}"),
+          child: Text("合計: ¥${ref.read(cartProvider.notifier).totalAmount.toStringAsFixed(2)}"),
         ),
       ),
     );

@@ -6,17 +6,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-final boxProvider = StateNotifierProvider<BoxViewModel, List<Product>>((ref) => BoxViewModel());
+final cartProvider = StateNotifierProvider<CartViewModel, List<Product>>((ref) => CartViewModel());
 
-class BoxViewModel extends StateNotifier<List<Product>> {
-  BoxViewModel() : super([]);
+class CartViewModel extends StateNotifier<List<Product>> {
+  CartViewModel() : super([]);
 
   late final firestore = FirebaseFirestore.instance;
 
-  Future<void> fetchBoxItems() async {
-    // ユーザーIDに基づいてカート内の商品を取得（例として）
-    final boxItems = await firestore.collection('cartItems').where('userId', isEqualTo: 'YOUR_USER_ID').get();
-    state = boxItems.docs.map((doc) => Product(
+  Future<void> fetchCartItems() async {
+    // ユーザーIDに基づいてカート内の商品を取得
+    final cartItems = await firestore.collection('cartItems').where('userId', isEqualTo: 'YOUR_USER_ID').get();
+    state = cartItems.docs.map((doc) => Product(
       id: doc.id,
       name: doc['name'],
       imageUrl: doc['imageUrl'],

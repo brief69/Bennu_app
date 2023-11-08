@@ -1,6 +1,9 @@
 
 
 // main_page.dart
+import 'package:bennu_app/viewmodels/main_page_provider.dart';
+import 'package:bennu_app/views/cart_view.dart';
+import 'package:bennu_app/views/profilepages/profile_page.dart';
 import 'package:dms/viewmodels/mainpage_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
