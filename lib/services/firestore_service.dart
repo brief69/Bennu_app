@@ -1,7 +1,7 @@
 
 
 // firestore_service.dart
-import 'package:bennu_app/models/comments.dart';
+import 'package:bennu_app/models/widgetmodels/comments.dart';
 import 'package:bennu_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

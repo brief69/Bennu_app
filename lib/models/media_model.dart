@@ -16,8 +16,8 @@ class MediaModel {
   final int stock;
   final int price;
   final int relay;
-  final String postId; // 投稿のID
-  final String userId; // ユーザーのID
+  final String postId;
+  final String userId;
 
 
   MediaModel({

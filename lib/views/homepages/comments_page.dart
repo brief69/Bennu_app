@@ -4,7 +4,7 @@
 
 // TODO: #9 このページいらなくね？
 import 'package:flutter/material.dart';
-import '../../models/comments.dart';
+import '../../models/widgetmodels/comments.dart';
 import '../../widgets/homebuttonwidgets/comment_button_widget.dart';
 
 

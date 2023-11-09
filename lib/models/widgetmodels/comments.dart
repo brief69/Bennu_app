@@ -16,5 +16,3 @@ class Comment {
     this.dislikes = 0,
   });
 }
- 
-// TODO: #4 んー、widgetのmodelはwidgetsに全部まとめたらあかんかな。。？
