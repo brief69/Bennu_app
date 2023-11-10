@@ -1,12 +1,13 @@
 
 
 // post_view.dart
-import 'package:dms/views/postpages/relay_post_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:bennu_app/viewmodels/post_viewmodel.dart';
-import 'package:dms/models/currency.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:io';
+import '../../models/currency.dart';
+import 'relay_post_page.dart';
 
 class PostView extends ConsumerWidget {
   const PostView({super.key});

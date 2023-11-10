@@ -1,15 +1,15 @@
 
 
 // settings_page.dart
-import 'package:dms/viewmodels/profile_viewmodel.dart';
-import 'package:dms/views/settingpages/rules_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dms/views/settingpages/delete_account_page.dart';
-import 'package:dms/views/settingpages/edit_address_page.dart';
-import 'package:dms/views/settingpages/logout_page.dart';
-import 'package:dms/views/settingpages/contact_support_page.dart';
+import '../../viewmodels/profile_viewmodel.dart';
+import 'settingpages/contact_support_page.dart';
+import 'settingpages/delete_account_page.dart';
+import 'settingpages/edit_address_page.dart';
+import 'settingpages/logout_page.dart';
+import 'settingpages/rules_page.dart';
 
 
 class SettingsPage extends StatelessWidget {

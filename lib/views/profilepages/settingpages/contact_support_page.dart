@@ -3,7 +3,8 @@
 // contact_support_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dms/viewmodels/settingviewmodels/contact_viewmodel.dart';
+import '../../../viewmodels/settingviewmodels/contact_viewmodel.dart';
+
 
 class ContactPage extends StatefulWidget {
   const ContactPage({Key? key}) : super(key: key);

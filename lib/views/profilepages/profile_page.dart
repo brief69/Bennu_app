@@ -8,6 +8,11 @@ import 'package:dms/views/profilepages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../viewmodels/profile_viewmodel.dart';
+import 'followers_page.dart';
+import 'following_page.dart';
+import 'settings_page.dart';
+
 
 final viewModelProvider = Provider<ProfileViewModel>((ref) => ProfileViewModel());
 

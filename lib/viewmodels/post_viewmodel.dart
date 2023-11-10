@@ -8,6 +8,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dms/models/currency.dart';
 import 'package:dms/models/transaction.dart' as myTransaction;
 
+import '../models/currency.dart';
+import '../models/post.dart';
+
 final postViewModelProvider = StateNotifierProvider<PostViewModel, List<XFile?>>((ref) => PostViewModel());
 
 class PostViewModel extends StateNotifier<List<XFile?>> {
