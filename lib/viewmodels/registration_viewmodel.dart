@@ -14,7 +14,7 @@ class RegistrationViewModel {
   final WalletService _walletService = WalletService();
   final FirestoreService firestoreService = FirestoreService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   
   Future<void> registerAndCreateWallet(String email) async {
     try {
