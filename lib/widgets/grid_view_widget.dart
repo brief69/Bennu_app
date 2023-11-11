@@ -1,9 +1,8 @@
 
 
-// grid_view_widget.dart
 import 'package:flutter/material.dart';
 import '../viewmodels/media_viewmodel.dart';
-
+import '../views/homepages/media_item_view.dart';
 
 enum PageType {
   history, likes, purchase, search, cart
@@ -37,22 +36,22 @@ class GridViewWidget extends StatelessWidget {
   }
 
   Widget buildGridItem(MediaViewModel mediaItem) {
-    // ここでページタイプに基づいて異なるUIを表示する
-    // 例：カートページでは価格とカウンターを表示
     return Column(
       children: [
         Image.network(mediaItem.videoUrl), // 動画のサムネイル表示
-        if (pageType == PageType.cart) ...[
-          Text('${mediaItem.price}円'),
-          // 数量調整のためのカウンターを表示するコード
-        ],
-        // 他の共通UI要素
+        // 他の共通UI要素（例：キャプションやいいね数の表示）
+        Text(mediaItem.caption),
+        // ... その他の情報表示
       ],
     );
   }
 
   void navigateToMediaPage(BuildContext context, MediaViewModel mediaItem) {
-    // グリッドアイテムをタップしたときのナビゲーションロジック
-    // 例：Navigator.push(...)
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MediaReel(viewModels: [mediaItem]),
+      ),
+    );
   }
 }

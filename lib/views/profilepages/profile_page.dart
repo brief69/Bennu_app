@@ -1,13 +1,11 @@
 
 
 // profile_page.dart
-// import 'package:dms/viewmodels/profile_viewmodel.dart';
-// import 'package:dms/views/profilepages/followers_page.dart';
-// import 'package:dms/views/profilepages/following_page.dart';
-// import 'package:dms/views/profilepages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../models/user_media_providers.dart';
 import '../../viewmodels/profile_viewmodel.dart';
+import '../../widgets/grid_view_widget.dart';
 import 'followers_page.dart';
 import 'following_page.dart';
 import 'settings_page.dart';
@@ -33,6 +31,11 @@ class ProfilePage extends ConsumerWidget {
     void showFollowing() {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage(uid: '',)));
     }
+
+    final userPosts = ref.watch(userPostsProvider); // 投稿履歴のデータ
+    final userLikes = ref.watch(userLikesProvider); // いいね履歴のデータ
+    final userBuys = ref.watch(userBuysProvider); // 購入履歴のデータ
+
 
     return Scaffold(
       appBar: AppBar(
@@ -76,7 +79,7 @@ class ProfilePage extends ConsumerWidget {
                             child: Text('follower ${viewModel.followingCount}'),
                           ),
                         ],
-                      ), // TODO:フォローフォロワーのカウントはバックエンド側で行い、viewmodelでfirestoreから取得して、ここでは取得したデータを表示するのみにする
+                      ), // TODO #20:フォローフォロワーのカウントはバックエンド側で行い、viewmodelでfirestoreから取得して、ここでは取得したデータを表示するのみにする
                     ],
                   ),
                 ),
@@ -116,9 +119,9 @@ class ProfilePage extends ConsumerWidget {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        // TODO: Implement Post history view
-                        // TODO: Implement Likes history view
-                        // TODO: Implement Buy history view
+                        GridViewWidget(mediaList: userPosts, pageType: PageType.history),
+                        GridViewWidget(mediaList: userLikes, pageType: PageType.likes),
+                        GridViewWidget(mediaList: userBuys, pageType: PageType.purchase),
                       ],
                     ),
                   ),
