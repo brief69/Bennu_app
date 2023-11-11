@@ -1,42 +1,42 @@
 
 
-// box_viewmodel.dart
-import 'package:bennu_app/models/search_model.dart';
+// vart_viewmodel.dart
+import 'package:bennu_app/models/media_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-final cartProvider = StateNotifierProvider<CartViewModel, List<Product>>((ref) => CartViewModel());
+// カートアイテムの状態を管理するプロバイダ
+final cartProvider = StateNotifierProvider<CartViewModel, List<MediaModel>>((ref) {
+  return CartViewModel();
+});
 
-class CartViewModel extends StateNotifier<List<Product>> {
+class CartViewModel extends StateNotifier<List<MediaModel>> {
   CartViewModel() : super([]);
 
-  late final firestore = FirebaseFirestore.instance;
+  // カート内の合計金額を計算
+  double get totalPrice => state.fold(0, (total, item) => total + item.price);
+  
+  Object get mediaId => null;
 
-  Future<void> fetchCartItems() async {
-    // ユーザーIDに基づいてカート内の商品を取得
-    final cartItems = await firestore.collection('cartItems').where('userId', isEqualTo: 'YOUR_USER_ID').get();
-    state = cartItems.docs.map((doc) => Product(
-      id: doc.id,
-      name: doc['name'],
-      imageUrl: doc['imageUrl'],
-      price: doc['price'],
-      quantity: doc['quantity'],
-    )).toList();
+  // MediaModelをカートに追加
+  void addItem(MediaModel item) {
+    state = [...state, item];
   }
 
-  void updateQuantity(String productId, int change) {
-    state = state.map((product) {
-      if (product.id == productId) {
-        product.quantity += change;
+  // 商品の数量を更新
+  void updateQuantity(String itemId, int newQuantity) {
+    state = state.map((item) {
+      if (item.postId == mediaId) {
+        return item.copyWith(quantity: newQuantity);
       }
-      return product;
+      return item;
     }).toList();
   }
 
-  void removeProduct(String productId) {
-    state = state.where((product) => product.id != productId).toList();
+  // 商品をカートから削除
+  void removeItem(String itemId) {
+    state = state.where((item) => item.postId != mediaId).toList();
   }
 
-  double get totalAmount => state.fold(0.0, (sum, product) => sum + product.totalPrice);
+  // その他の必要なメソッド
 }

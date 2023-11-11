@@ -1,6 +1,6 @@
 
 
-// stock_widget.dart
+// counter_widget.dart
 import 'package:flutter/material.dart';
 
 class CountWidget extends StatefulWidget {

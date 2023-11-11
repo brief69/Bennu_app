@@ -35,23 +35,6 @@ class SettingsPage extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const RulesPage()));
                   }
                 ),
-                const ListTile(
-                  title: Text('配送に必要な設定', style: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
-                  ),
-                  tileColor: Colors.grey,
-                ),
-                ListTile(
-                  title: const Text('Full Name', style: TextStyle(color: Colors.black)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FullNameSetPage()));
-                  },
-                ),
-                ListTile(
-                  title: const Text('Phone Number', style: TextStyle(color: Colors.black)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SMSSetPage()));
-                  },
-                ),
                 ListTile(
                   title: const Text('Address', style: TextStyle(color: Colors.black)),
                   onTap: () {

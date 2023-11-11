@@ -1,20 +1,21 @@
 
 
-// in_cart_widget.dart
 import 'package:flutter/material.dart';
-import '../counter_widget.dart'; // StockWidgetをインポート
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../viewmodels/cart_viewmodel.dart';
+import '../counter_widget.dart';
 
 class InCartWidget extends StatefulWidget {
+  final String productId;
   final int stock;
   final int initialInCart;
 
   const InCartWidget({
     Key? key,
+    required this.productId,
     required this.stock,
     required this.initialInCart,
   }) : super(key: key);
-  
-  get count => null;// TODO #3:
 
   @override
   InCartWidgetState createState() => InCartWidgetState();
@@ -36,38 +37,45 @@ class InCartWidgetState extends State<InCartWidget> {
     });
   }
 
-  void _updateInCart(int newInCart) {
+  void _updateInCart(int newInCart, WidgetRef ref) {
     setState(() {
       inCart = newInCart;
     });
+    // カートの数量を更新
+    ref.read(cartProvider.notifier).updateQuantity(widget.productId, newInCart);
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _toggleExpansion,
-      child: AnimatedContainer(
-        duration: const Duration(seconds: 3),
-        curve: Curves.fastOutSlowIn,
-        width: isExpanded ? 200 : 100,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(isExpanded ? 1 : 0.5),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: isExpanded
-            ? CountWidget(
-                currentCount: inCart,
-                maxCount: widget.count,
-                onCountChanged: _updateInCart,
-              )
-            : Center(
-                child: Text(
-                  'In Cart ($inCart)',
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-      ),
+    return Consumer(
+      builder: (context, ref, child) {
+        return GestureDetector(
+          onTap: _toggleExpansion,
+          child: AnimatedContainer(
+            duration: const Duration(seconds: 3),
+            curve: Curves.fastOutSlowIn,
+            width: isExpanded ? 200 : 100,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withOpacity(isExpanded ? 1 : 0.5),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: isExpanded
+                ? CountWidget(
+                    currentCount: inCart,
+                    maxCount: widget.stock,
+                    onCountChanged: (newCount) => _updateInCart(newCount, ref),
+                  )
+                : Center(
+                    child: Text(
+                      'In Cart ($inCart)',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+          ),
+        );
+      },
     );
   }
 }
+

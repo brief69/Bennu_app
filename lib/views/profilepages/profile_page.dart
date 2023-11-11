@@ -1,13 +1,12 @@
 
 
 // profile_page.dart
-import 'package:dms/viewmodels/profile_viewmodel.dart';
-import 'package:dms/views/profilepages/followers_page.dart';
-import 'package:dms/views/profilepages/following_page.dart';
-import 'package:dms/views/profilepages/settings_page.dart';
+// import 'package:dms/viewmodels/profile_viewmodel.dart';
+// import 'package:dms/views/profilepages/followers_page.dart';
+// import 'package:dms/views/profilepages/following_page.dart';
+// import 'package:dms/views/profilepages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../viewmodels/profile_viewmodel.dart';
 import 'followers_page.dart';
 import 'following_page.dart';
@@ -38,7 +37,7 @@ class ProfilePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile", style: TextStyle(color: Colors.white)),
-        backgroundColor: const Color.fromARGB(255, 0, 12, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 12, 0),// TODO: themeを使用するように変更
         centerTitle: true,
         actions: [
           IconButton(
@@ -101,45 +100,25 @@ class ProfilePage extends ConsumerWidget {
               ],
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 7,
             child: DefaultTabController(
-              length: 2,
+              length: 3,
               child: Column(
                 children: [
-                  const TabBar(
+                  TabBar(
                     tabs: [
-                      Tab(text: 'History'),
-                      Tab(text: 'Wallet'),
+                      Tab(text: 'Post'),
+                      Tab(text: 'Likes'),
+                      Tab(text: 'Buy'),
                     ],
                   ),
                   Expanded(
                     child: TabBarView(
                       children: [
-                        const Column(
-                          children: [
-                            TabBar(
-                              tabs: [
-                                Tab(text: 'Post'),
-                                Tab(text: 'Likes'),
-                                Tab(text: 'Buy'),
-                              ],
-                            ),
-                            Expanded(
-                              child: TabBarView(
-                                children: [
-                                  // TODO:それぞれのタブの中身を実装
-                                  // TODO: post,like,buyは、全て同じようなグリッドビューで表示、viewのコードは使い回して、ユーザーが今いる画面に応じて取得するデータのみ変更して表示する。
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        ListView(
-                          // ウォレットのリストビューの中身を実装
-                          // Walletの中身は、Listviewで表示されており、solanaトークンの送受信、円の支払い履歴などの全てを表示する。将来的には検索機能をつけるが今はしない。
-                          // 必要なデータは、支払った日、受け取った日、その額、berryかjpyのどちらで支払ったのかの単位、支払った対象のcaptionの一部、
-                        ),
+                        // TODO: Implement Post history view
+                        // TODO: Implement Likes history view
+                        // TODO: Implement Buy history view
                       ],
                     ),
                   ),

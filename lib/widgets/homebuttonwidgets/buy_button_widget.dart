@@ -2,7 +2,6 @@
 
 // buy_button_widget.dart
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +9,14 @@ import 'package:flutter/material.dart';
 class BuyButton extends StatefulWidget {
   final double defaultWidth;
   final String price;
+  final bool isExtendedByDefault;
   
-  const BuyButton({super.key, this.defaultWidth = 150.0, required this.price});
+  const BuyButton(
+    {super.key, 
+    this.defaultWidth = 150.0, 
+    required this.price, required this.isExtendedByDefault
+    this.isExtendedByDefault = false,
+  });
 
   @override
   BuyButtonState createState() => BuyButtonState();
@@ -27,7 +32,8 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
   void initState() {
     super.initState();
 
-    width = widget.defaultWidth;
+    _isExtended = widget.isExtendedByDefault;
+      width = _isExtended ? 250.0 : widget.defaultWidth;
 
     _animationController = AnimationController(
       duration: const Duration(seconds: 3),
@@ -51,7 +57,7 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
         width: width,
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: const Color.fromARGB(255, 0, 0, 96),
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
             color: Colors.blue[200]!.withOpacity(0.6 * _animationController.value),
@@ -99,4 +105,5 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
     }
     super.dispose();
   }
+
 }
