@@ -2,12 +2,9 @@
 
 
 // registration_viewmodel.dart
-import 'package:dms/services/auth_service.dart';
-import 'package:dms/services/firestore_service.dart';
-import 'package:dms/services/wallet_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
 import '../services/wallet_service.dart';

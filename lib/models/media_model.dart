@@ -42,4 +42,6 @@ class MediaModel {
   get itemlimit => null;
 
   get mediaItems => null;
+
+  void copyWith({required int quantity}) {}
 }

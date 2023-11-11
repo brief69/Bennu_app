@@ -16,7 +16,7 @@ class CartViewModel extends StateNotifier<List<MediaModel>> {
   // カート内の合計金額を計算
   double get totalPrice => state.fold(0, (total, item) => total + item.price);
   
-  Object get mediaId => null;
+  Object? get mediaId => null;
 
   // MediaModelをカートに追加
   void addItem(MediaModel item) {

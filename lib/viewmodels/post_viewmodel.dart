@@ -1,15 +1,14 @@
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:dms/models/post.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dms/models/currency.dart';
-import 'package:dms/models/transaction.dart' as myTransaction;
-
 import '../models/currency.dart';
 import '../models/post.dart';
+// ignore: library_prefixes
+import '../models/transaction.dart' as myTransaction;
+
 
 final postViewModelProvider = StateNotifierProvider<PostViewModel, List<XFile?>>((ref) => PostViewModel());
 
