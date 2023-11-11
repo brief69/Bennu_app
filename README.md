@@ -9,7 +9,7 @@ DMS is an experimental application proposing a new kind of market, the Distribut
 - Proposing the idea of Distributed Market Share
 - Adopting the UPS revenue model proposed by @brief69
 - Integrating the transparency of social networks with a voting system
-- Bennu: Democratically realizing the entire process from production to second-hand distribution
+- Bennu app: Democratically realizing the entire process from production to second-hand distribution
 
 ## Tech Stack
 
