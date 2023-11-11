@@ -1,38 +1,52 @@
 
 
 // user_manager.dart
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/user.dart';
 
-// 現在ログインしているユーザーの状態を管理するプロバイダー
-final currentUserProvider = StateProvider<User?>((ref) {
-  // 初期状態はnullか、既に認証されているユーザー情報を設定
-  return null; 
-});
+import '../models/user.dart';
+import 'current_user_provider.dart';
+
+// Firestoreからユーザー情報を取得する関数
+Future<Map<String, dynamic>> fetchUserDetails(String userId) async {
+  // Firestoreのインスタンスを取得
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  // ユーザー情報を取得
+  DocumentSnapshot userDoc = await firestore.collection('users').doc(userId).get();
+
+  if (userDoc.exists) {
+    return userDoc.data() as Map<String, dynamic>;
+  } else {
+    throw Exception('User not found');
+  }
+}
 
 // ユーザーのログイン処理を行う関数（例）
 Future<void> loginUser(WidgetRef ref, String userId) async {
-  // ログイン処理...
-  // ログインに成功したら、currentUserProviderの状態を更新
-  ref.read(currentUserProvider.notifier).state = 
-    User(
-      id: userId, 
-      userName: '', 
-      userIcon: '', 
-      solanaAddress: '', 
-      postHistory: [], 
-      likesHistory: [], 
-      buyHistory: [], 
-      followingCount: , 
-      followerCount: ,
-    );
-}
+  try {
+    // Firestoreからユーザー情報を取得
+    Map<String, dynamic> userDetails = await fetchUserDetails(userId);
 
-// ユーザーのログアウト処理を行う関数（例）
-void logoutUser(WidgetRef ref) {
-  // ログアウト処理...
-  // currentUserProviderの状態をnullにリセット
-  ref.read(currentUserProvider.notifier).state = null;
+    // ユーザーオブジェクトを作成
+    User user = User(
+      id: userId,
+      userName: userDetails['userName'] ?? '',
+      userIcon: userDetails['userIcon'] ?? '',
+      solanaAddress: userDetails['solanaAddress'] ?? '',
+      postHistory: userDetails['postHistory'] ?? [],
+      likesHistory: userDetails['likesHistory'] ?? [],
+      buyHistory: userDetails['buyHistory'] ?? [],
+      followingCount: userDetails['followingCount'] ?? 0,
+      followerCount: userDetails['followerCount'] ?? 0,
+    );
+
+    // currentUserProviderの状態を更新
+    ref.read(currentUserProvider.notifier).state = user;
+  } catch (e) {
+    // エラーハンドリング（ログイン失敗やデータ取得エラー）
+    // 必要に応じてさらなるエラーハンドリングを行う
+  }
 }
 
 

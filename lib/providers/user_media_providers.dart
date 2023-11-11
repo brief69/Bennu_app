@@ -4,7 +4,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/media_model.dart';
 import '../services/firestore_service.dart';
-import 'user_manager.dart';
+import 'current_user_provider.dart';
 
 
 // FirestoreServiceのインスタンスを作成

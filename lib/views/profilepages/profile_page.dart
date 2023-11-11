@@ -3,8 +3,10 @@
 // profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../models/media_model.dart';
+import '../../providers/current_user_provider.dart';
 import '../../providers/user_media_providers.dart';
-import '../../providers/user_manager.dart';
+import '../../viewmodels/media_viewmodel.dart';
 import '../../viewmodels/profile_viewmodel.dart';
 import '../../widgets/grid_view_widget.dart';
 import 'edit_profile_page.dart';
@@ -12,13 +14,14 @@ import 'followers_page.dart';
 import 'following_page.dart';
 import 'settings_page.dart';
 
-
 final viewModelProvider = Provider<ProfileViewModel>((ref) => ProfileViewModel());
+final userPostsProvider = FutureProvider<List<MediaModel>>((ref) async {
+    // ここでユーザーの投稿を取得するロジックを実装
+      return []; // 仮のデータ
+    });
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
-  
-  ProviderListenable? get userPostsProvider => null;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,22 +37,25 @@ class ProfilePage extends ConsumerWidget {
     }
 
     void showFollowers() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowersPage(uid: '',)));
+      if (currentUser != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => FollowersPage(uid: currentUser.id)));
+      }
     }
 
     void showFollowing() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage(uid: '',)));
+      if (currentUser != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => FollowingPage(uid: currentUser.id)));
+      }
     }
 
-    final userPosts = ref.watch(userPostsProvider!); // 投稿履歴のデータ
+    final userPosts = ref.watch(userPostsProvider); // 投稿履歴のデータ
     final userLikes = ref.watch(userLikesProvider); // いいね履歴のデータ
     final userBuys = ref.watch(userBuysProvider); // 購入履歴のデータ
-
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile", style: TextStyle(color: Colors.white)),
-        backgroundColor: const Color.fromARGB(255, 0, 12, 0),// TODO: themeを使用するように変更
+        backgroundColor: const Color.fromARGB(255, 0, 12, 0), // TODO: themeを使用するように変更
         centerTitle: true,
         actions: [
           IconButton(
@@ -64,13 +70,21 @@ class ProfilePage extends ConsumerWidget {
             flex: 3,
             child: Row(
               children: [
+                // User icon and other details
+                // ...
                 Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Expanded(
                   flex: 1,
                   child: Column(
                     children: [
                       GestureDetector(
                         onTap: () => viewModel.pickUserIcon(),
-                        child: Image.network(viewModel.userIcon),
+                        child: viewModel.userIcon != null 
+                        ? Image.network(viewModel.userIcon!)
+                        : Image.asset('path/to/default/image.png'),// TODO #21:デフォルト画像パスを設定する
                       ),
                       ElevatedButton(
                         onPressed: goToEditProfilePage,
@@ -112,13 +126,13 @@ class ProfilePage extends ConsumerWidget {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 7,
             child: DefaultTabController(
               length: 3,
               child: Column(
                 children: [
-                  TabBar(
+                  const TabBar(
                     tabs: [
                       Tab(text: 'Post'),
                       Tab(text: 'Likes'),
@@ -128,9 +142,9 @@ class ProfilePage extends ConsumerWidget {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        GridViewWidget(mediaList: userPosts, pageType: PageType.history),
-                        GridViewWidget(mediaList: userLikes, pageType: PageType.likes),
-                        GridViewWidget(mediaList: userBuys, pageType: PageType.purchase),
+                        buildGridView(userPosts, PageType.history),
+                        buildGridView(userLikes, PageType.likes),
+                        buildGridView(userBuys, PageType.purchase),
                       ],
                     ),
                   ),
@@ -140,6 +154,19 @@ class ProfilePage extends ConsumerWidget {
           ),
         ],
       ),
+    ); //TODO: #22 このエラーなんやねん。。
+  }
+
+  Widget buildGridView(AsyncValue<List<MediaModel>> asyncMediaList, PageType pageType) {
+    return asyncMediaList.when(
+      data: (List<MediaModel> mediaList) {
+        List<MediaViewModel> mediaViewModels = mediaList.map((mediaModel) {
+          return MediaViewModel(mediaModel); // 仮の変換処理
+        }).toList();
+        return GridViewWidget(mediaList: mediaViewModels, pageType: pageType);
+      },
+      loading: () => const CircularProgressIndicator(), // ローディング中の表示
+      error: (e, st) => Text('Error: $e'), // エラー発生時の表示
     );
   }
 }

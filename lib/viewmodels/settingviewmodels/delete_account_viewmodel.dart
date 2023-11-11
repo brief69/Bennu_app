@@ -13,8 +13,8 @@ class DeleteAccountViewModel {
       postHistory: [], 
       likesHistory: [], 
       buyHistory: [], 
-      followingCount: ,
-      followerCount: ,
+      followingCount: 0, // ここに初期値を設定
+      followerCount: 0,  // ここに初期値を設定
     );
 
   Future<bool> deleteAccount() async {
