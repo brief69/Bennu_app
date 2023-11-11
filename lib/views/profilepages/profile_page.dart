@@ -3,7 +3,7 @@
 // profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../models/user_media_providers.dart';
+import '../../providers/user_media_providers.dart';
 import '../../providers/user_manager.dart';
 import '../../viewmodels/profile_viewmodel.dart';
 import '../../widgets/grid_view_widget.dart';
@@ -17,6 +17,8 @@ final viewModelProvider = Provider<ProfileViewModel>((ref) => ProfileViewModel()
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
+  
+  ProviderListenable? get userPostsProvider => null;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +41,7 @@ class ProfilePage extends ConsumerWidget {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage(uid: '',)));
     }
 
-    final userPosts = ref.watch(userPostsProvider); // 投稿履歴のデータ
+    final userPosts = ref.watch(userPostsProvider!); // 投稿履歴のデータ
     final userLikes = ref.watch(userLikesProvider); // いいね履歴のデータ
     final userBuys = ref.watch(userBuysProvider); // 購入履歴のデータ
 

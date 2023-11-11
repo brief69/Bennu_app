@@ -16,8 +16,13 @@ class FirestoreService {
       'publicKey': user.publicKey,
     });
   }
+
+  fetchUserLikes(id) {}
+
+  fetchUserBuys(id) {}
 }
 
+// comments
 Future<List<Comment>> fetchComments(String videoID) async {
   final commentsCollection = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments');
   final snapshot = await commentsCollection.orderBy('timestamp', descending: true).get();
@@ -51,6 +56,7 @@ Future<void> updateDislikes(String videoID, String commentID, int newDislikes) a
   await commentDoc.update({'dislikes': newDislikes});
 }
 
+// profile history
 Future<List> fetchUserPosts(String userId) async {
     final userPostsCollection = FirebaseFirestore.instance.collection('posts');
     final snapshot = await userPostsCollection.where('userId', isEqualTo: userId).get();
@@ -71,4 +77,3 @@ Future<List> fetchUserPosts(String userId) async {
 
     return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
   }
-  

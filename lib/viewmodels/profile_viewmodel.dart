@@ -15,8 +15,8 @@ class ProfileViewModel extends ChangeNotifier {
   String? get userIcon => _user?.userIcon;
   String get username => _user?.userName ?? '';
   get followingCount => null;
-
   get profile => null;
+  get followersCount => null;
  
 
   // ユーザーデータをロード
@@ -66,6 +66,12 @@ class ProfileViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  pickUserIcon() {}
+
+  goToQRPage() {}
+
+  copySolanaAddress() {}
 }
 
 // ProfileViewModel の役割

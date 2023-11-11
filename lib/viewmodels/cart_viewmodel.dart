@@ -23,15 +23,15 @@ class CartViewModel extends StateNotifier<List<MediaModel>> {
     state = [...state, item];
   }
 
-  // 商品の数量を更新
   void updateQuantity(String itemId, int newQuantity) {
-    state = state.map((item) {
-      if (item.postId == mediaId) {
-        return item.copyWith(quantity: newQuantity);
-      }
-      return item;
-    }).toList();
-  }
+  state = state.map((item) {
+    if (item.postId == itemId) {
+      // 条件に合致する場合、新しい数量でアイテムを更新
+      return item.copyWith(quantity: newQuantity);
+    }
+    return item; // 条件に合わない場合は元のアイテムをそのまま返す
+  }).toList(); // List<MediaModel> として正しい型のリストが生成される
+}
 
   // 商品をカートから削除
   void removeItem(String itemId) {

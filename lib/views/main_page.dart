@@ -1,7 +1,7 @@
 
 
 // main_page.dart
-import 'package:bennu_app/viewmodels/main_page_provider.dart';
+import 'package:bennu_app/providers/main_page_provider.dart';
 import 'package:bennu_app/views/cart_view.dart';
 import 'package:bennu_app/views/postpages/post_view.dart';
 import 'package:bennu_app/views/profilepages/profile_page.dart';

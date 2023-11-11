@@ -14,7 +14,7 @@ class User {
   final int followingCount;
   final int followerCount;
 
-  User(required String id, {
+  User({
     required this.id,
     required this.userName,
     required this.userIcon,
@@ -46,6 +46,8 @@ class User {
   get publicKey => null;
 
   get name => null;
+
+  get state => null;
 
   // ... other properties and methods ...
 
