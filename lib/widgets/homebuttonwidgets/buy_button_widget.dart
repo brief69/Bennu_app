@@ -11,12 +11,13 @@ class BuyButton extends StatefulWidget {
   final String price;
   final bool isExtendedByDefault;
   
-  const BuyButton(
-    {super.key, 
-    this.defaultWidth = 150.0, 
-    required this.price, required this.isExtendedByDefault
-    this.isExtendedByDefault = false,
-  });
+  const BuyButton({
+  super.key, 
+  this.defaultWidth = 150.0, 
+  required this.price, 
+  this.isExtendedByDefault = false,
+});
+
 
   @override
   BuyButtonState createState() => BuyButtonState();

@@ -44,4 +44,6 @@ class MediaModel {
   get mediaItems => null;
 
   void copyWith({required int quantity}) {}
+
+  static fromMap(Map<String, dynamic> data) {}
 }

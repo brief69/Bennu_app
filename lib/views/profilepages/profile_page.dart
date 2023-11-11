@@ -4,8 +4,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/user_media_providers.dart';
+import '../../providers/user_manager.dart';
 import '../../viewmodels/profile_viewmodel.dart';
 import '../../widgets/grid_view_widget.dart';
+import 'edit_profile_page.dart';
 import 'followers_page.dart';
 import 'following_page.dart';
 import 'settings_page.dart';
@@ -18,10 +20,15 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(currentUserProvider); // 現在のユーザー情報を取得
     final viewModel = ref.watch(viewModelProvider);
 
+    if (currentUser != null) {
+      viewModel.loadUserData(currentUser.id); // ユーザー情報をProfileViewModelにロード
+    }
+
     void goToEditProfilePage() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfilePage()));
     }
 
     void showFollowers() {

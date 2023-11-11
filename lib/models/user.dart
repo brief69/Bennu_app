@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class User {
   final String id;
   late final String userIcon;
-  final String userName;
+  late final String userName;
   final String solanaAddress;
   final List<dynamic> postHistory;
   final List<dynamic> likesHistory;
@@ -44,6 +44,8 @@ class User {
   get email => null;
 
   get publicKey => null;
+
+  get name => null;
 
   // ... other properties and methods ...
 

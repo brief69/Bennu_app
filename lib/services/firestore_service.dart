@@ -5,6 +5,8 @@ import 'package:bennu_app/models/widgetmodels/comments.dart';
 import 'package:bennu_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../models/media_model.dart';
+
 class FirestoreService {
   final _usersCollection = FirebaseFirestore.instance.collection('users');
 
@@ -15,7 +17,6 @@ class FirestoreService {
     });
   }
 }
-
 
 Future<List<Comment>> fetchComments(String videoID) async {
   final commentsCollection = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments');
@@ -49,3 +50,25 @@ Future<void> updateDislikes(String videoID, String commentID, int newDislikes) a
   final commentDoc = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments').doc(commentID);
   await commentDoc.update({'dislikes': newDislikes});
 }
+
+Future<List> fetchUserPosts(String userId) async {
+    final userPostsCollection = FirebaseFirestore.instance.collection('posts');
+    final snapshot = await userPostsCollection.where('userId', isEqualTo: userId).get();
+
+    return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
+  }
+
+  Future<List> fetchUserLikes(String userId) async {
+    final userLikesCollection = FirebaseFirestore.instance.collection('likes');
+    final snapshot = await userLikesCollection.where('userId', isEqualTo: userId).get();
+
+    return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
+  }
+
+  Future<List> fetchUserBuys(String userId) async {
+    final userBuysCollection = FirebaseFirestore.instance.collection('purchases');
+    final snapshot = await userBuysCollection.where('userId', isEqualTo: userId).get();
+
+    return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
+  }
+  
