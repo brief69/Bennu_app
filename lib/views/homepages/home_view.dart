@@ -29,7 +29,7 @@ class HomeViewState extends State<HomeView> {
     // postDataからMediaModelを作成し、それを使用してMediaViewModelを作成します。
     return MediaViewModel(
       MediaModel(
-        firestore: widget.firestore,// TOOD: ここで呼び出さんよな
+        firestore: widget.firestore,// TOOD: ここで呼び出さんよな。；
         // 以下の各フィールドは、Firestoreのドキュメントに対応したキーを使用して値を取得しています。
       ),
     );

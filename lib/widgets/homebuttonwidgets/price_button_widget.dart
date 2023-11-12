@@ -20,7 +20,6 @@ class PriceWidget extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        // モーダル遷移の画面を表示するロジック
         priceViewModel.toggleCurrency(); // 通貨の表示を切り替える
       },
       child: Container(
