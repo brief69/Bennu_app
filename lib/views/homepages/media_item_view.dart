@@ -29,6 +29,7 @@ class MediaItemViewState extends State<MediaItemView> {
   void initState() {
     super.initState();
     // VideoPlayerControllerを使用して、viewModel内のvideoUrlから動画を再生します。
+    // ignore: deprecated_member_use
     _controller = VideoPlayerController.network(widget.viewModel.videoUrl)
       ..initialize().then((_) {
         setState(() {

@@ -2,7 +2,7 @@
 
 // buy_button_widget.dart
 import 'dart:async';
-import 'package:flutter/foundation.dart';
+import 'package:bennu_app/widgets/pay_widget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -90,12 +90,13 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
     });
   }
 
-  void _launchPayment() {// _launchPaymentメソッドは、ここで持たせる役割かな？
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      // Launch Apple Pay
-    } else if (defaultTargetPlatform == TargetPlatform.android) {
-      // Launch Google Pay
-    }
+  void _launchPayment() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return PayWidget(price: double.parse(widget.price));
+      },
+    );
   }
 
   @override
