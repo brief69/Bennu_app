@@ -6,6 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../../viewmodels/media_viewmodel.dart';
+import '../../widgets/homebuttonwidgets/buy_button_widget.dart';
+import '../../widgets/homebuttonwidgets/caption_button_widget.dart';
+import '../../widgets/homebuttonwidgets/incart_button_widget.dart';
+import '../../widgets/homebuttonwidgets/other_button_widget.dart';
+import '../../widgets/homebuttonwidgets/price_button_widget.dart';
+import '../../widgets/homebuttonwidgets/relay_button_widget.dart';
+import '../../widgets/homebuttonwidgets/share_button_widget.dart';
+import '../../widgets/homebuttonwidgets/stock_button_widget.dart';
+import '../../widgets/homebuttonwidgets/usericon_button_widget.dart';
 
 // ステートフルウィジェットMediaItemViewを定義します。
 class MediaItemView extends StatefulWidget {
@@ -70,14 +79,101 @@ class MediaItemViewState extends State<MediaItemView> {
             child: VideoPlayer(_controller),
           ),
         ),
-        // TODO #11:動画の上に重ねるUIの配置を書く
-      // 現在は一旦、動画の右下に「いいね」ボタンを配置してみる。
+        // UserIconWidgetの配置
         Positioned(
-          right: 10,
-          bottom: 10,
+          top: 16, // 上部からの距離
+          right: 16, // 右側からの距離
+          child: UserIconWidget(
+            userProfileUrl: 'ユーザーのプロフィールURL',
+            onFollow: () {
+            // フォロー処理
+            },
+            onProfileTap: () {
+            // プロフィールタップ処理
+            },
+          ),
+        ),
+        // LikeButtonWidgetの配置
+        const Positioned(
+          top: 100, // UserIconWidgetの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
           child: LikeButtonWidget(
-            postId: widget.viewModel.postId, // ViewModelからpostIdを取得
-            userId: widget.viewModel.userId, // ViewModelからuserIdを取得
+            postId: '投稿ID', // 例：'postId123'
+            userId: 'ユーザーID', // 例：'userId456'
+          ),
+        ),
+        Positioned(
+          top: 160, // LikeButtonWidgetの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
+          child: IconButton(
+            icon: const Icon(Icons.comment),
+            onPressed: () {
+            // コメントセクションを開く処理
+            },
+          ),
+        ),
+        // OtherWidgetの配置
+        const Positioned(
+          top: 220, // CommentIconButtonの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
+          child: OtherWidget(),
+        ),
+        // BuyButtonの配置
+        const Positioned(
+          top: 280, // OtherWidgetの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
+          child: BuyButton(
+            price: '価格', // 例：'￥1000'
+          ),
+        ),
+        // InCartWidgetの配置
+        const Positioned(
+          top: 340, // BuyButtonの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
+          child: InCartWidget(
+            productId: '商品ID', // 例：'product123'
+            stock: 10, // 在庫数
+            initialInCart: 0, // カート初期数
+          ),
+        ),
+        // ShareWidgetの配置
+        const Positioned(
+          top: 400, // InCartWidgetの下に配置するための適切な高さ
+          right: 16, // 右側からの距離
+          child: ShareWidget(
+            textToShare: '共有したいテキスト', // 例：'Check out this cool video!'
+            subject: '任意のサブジェクト', // 例：'Video Share'
+          ),
+        ),
+        // RelayWidgetの配置
+        const Positioned(
+          bottom: 16, // 下部からの距離
+          right: 60, // シェアボタンの右側に配置
+          child: RelayWidget(),
+        ),
+        // PriceWidgetの配置
+        const Positioned(
+          bottom: 16, // 下部からの距離
+          right: 120, // RelayWidgetの左側に配置
+          child: PriceWidget(
+            priceInYen: 1000, // 例：1000円
+          ),
+        ),
+        // StockWidgetの配置
+        const Positioned(
+          bottom: 16, // 下部からの距離
+          right: 180, // PriceWidgetの左側に配置
+          child: StockWidget(
+            stockCount: 5, // 例：在庫数5
+          ),
+        ),
+        // CaptionButtonWidgetの配置
+        const Positioned(
+          bottom: 80, // ボタンの上に配置するための適切な高さ
+          right: 20, // 右側からの距離
+          left: 20, // 左側からの距離
+          child: CaptionButtonWidget(
+            caption: 'ここにキャプションのテキストを挿入', // 例：キャプションテキスト
           ),
         ),
       ],

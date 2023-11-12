@@ -80,3 +80,10 @@ class HomeViewState extends State<HomeView> {
     );
   }
 }
+
+
+// 最新の要件
+// このページは、media_item_viewを表示するhome画面で、
+// appbarにおすすめ、フォロー中、通知アイコンが配置されていて、
+// それぞれに対応する投稿データの表示を担う
+// 
