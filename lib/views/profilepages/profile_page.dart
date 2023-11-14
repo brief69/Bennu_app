@@ -55,8 +55,8 @@ class ProfilePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile", style: TextStyle(color: Colors.white)),
-        backgroundColor: const Color.fromARGB(255, 0, 12, 0), // TODO: themeを使用するように変更
+        title: Text("Profile", style: theme.textTheme.titleLarge),
+        backgroundColor: theme.appBarTheme.backgroundColor,
         centerTitle: true,
         actions: [
           IconButton(

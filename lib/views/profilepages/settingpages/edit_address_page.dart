@@ -18,11 +18,11 @@ class AddressSetPageState extends State<AddressSetPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Address'),
-        backgroundColor: const Color.fromARGB(255, 74, 2, 2),// TODO: #6 themeを使用するように変更して
-        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text('Address', style: theme.textTheme.titleLarge),
+        backgroundColor: theme.appBarTheme.backgroundColor,
       ),
       backgroundColor: Colors.white,
       body: Padding(
