@@ -24,37 +24,32 @@ class SettingsPage extends StatelessWidget {
         builder: (_, viewModel, __) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: const Color.fromARGB(255, 0, 13, 3),
-              title: const Text('SETTINGS', style: TextStyle(color: Colors.white)),
+              backgroundColor: theme.appBarTheme.backgroundColor,
+              title: Text('SETTINGS', style: theme.appBarTheme.titleTextStyle),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: theme.colorScheme.background,
             body: ListView(
               children: [
                 ListTile(
-                  title: const Text('Bennu Rules', style: TextStyle(color: Colors.black)),
+                  title: Text('Bennu Rules', style: theme.textTheme.bodyLarge),
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const RulesPage()));
                   }
                 ),
                 ListTile(
-                  title: const Text('Address', style: TextStyle(color: Colors.black)),
+                  title: Text('Address', style: theme.textTheme.bodyLarge),
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const AddressSetPage()));
                   },
                 ),
-                const ListTile(
-                  title: Text('Othher',  style: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
-                  ),
-                  tileColor: Colors.grey,
-                ),
                 ListTile(
-                  title: const Text('Contacts'),
+                  title: Text('Contacts', style: theme.textTheme.bodyLarge),
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactPage()));
                   },
                 ),
                 ListTile(
-                  title: const Text('Development'),
+                  title: Text('Development', style: theme.textTheme.bodyLarge),
                   onTap: () async {
                     const url = 'https://github.com/brief69/dms_front';
                     // ignore: deprecated_member_use
@@ -67,13 +62,19 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 ElevatedButton(
-                  child: const Text('Log Out', style: TextStyle(color: Colors.black)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: theme.colorScheme.primary,
+                  ),
+                  child: Text('Log Out', style: theme.textTheme.labelLarge),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const LogoutPage()));
                   }
                 ),
                 ElevatedButton(
-                  child: const Text('Delete Account', style: TextStyle(color: Colors.black)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: theme.colorScheme.primary,
+                  ),
+                  child: Text('Delete Account', style: theme.textTheme.labelLarge),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const DeleteAccountPage()));
                   }

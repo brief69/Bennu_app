@@ -23,12 +23,9 @@ class HomeView extends StatefulWidget {
 class HomeViewState extends State<HomeView> {
   // FirestoreのドキュメントからMediaViewModelを作成する関数
   MediaViewModel _createViewModelFromDocument(DocumentSnapshot doc) {
-    // ドキュメントのデータをMapとして取得します。
-    Map<String, dynamic> postData = doc.data() as Map<String, dynamic>;
-    // postDataからMediaModelを作成し、それを使用してMediaViewModelを作成します。
     return MediaViewModel(
       MediaModel(
-        firestore: widget.firestore, videoUrl: '', userIcon: '', likes: , comments: null, other: '', buy: null, incart: null, shares: null, caption: '', stock: null, price: null, relay: null, postId: '', userId: '',
+        firestore: widget.firestore, videoUrl: '', userIcon: '', likes: 0, comments: 0, other: '', buy: 0, incart: 0, shares: 0, caption: '', stock: 0, price: 0, relay: 0, postId: '', userId: '',
       ),
     );
   }
@@ -51,36 +48,35 @@ class HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-        body: const TabBarView(
+        body:  TabBarView(
           children: [
             // おすすめタブのコンテンツ
             // フォロータブのコンテンツ
-            // 通知タブのコンテンツとしてBellTabWidgetを使用
-            BellTabWidget(),
-          ],
-        ),
+            const BellTabWidget(),// 通知タブのコンテンツとしてBellTabWidgetを使用
         // StreamBuilderを使用してFirestoreのデータストリームを購読します。
-        body: StreamBuilder(
-          stream: widget.firestore.collection('posts').snapshots(), // 'posts'コレクションのスナップショットを購読
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          StreamBuilder(
+            stream: widget.firestore.collection('posts').snapshots(), // 'posts'コレクションのスナップショットを購読
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             // データがまだない場合はローディングインジケータを表示します。
-            if (!snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
             // メディアアイテムのリストを初期化します。
-            List<MediaItemView> mediaItems = [];
+              List<MediaItemView> mediaItems = [];
             // Firestoreから取得したドキュメントのリストを繰り返し処理します。
-            for (var doc in snapshot.data!.docs) {
+              for (var doc in snapshot.data!.docs) {
               // 各ドキュメントからMediaItemViewを作成し、リストに追加します。
-              mediaItems.add(MediaItemView(
+                mediaItems.add(MediaItemView(
                 // Firestoreドキュメントの各フィールドからウィジェットにデータを渡します。
                 // _createViewModelFromDocument関数を使用してViewModelを生成し、ウィジェットに渡します。
-                viewModel: _createViewModelFromDocument(doc),
-              ));
-            }
+                  viewModel: _createViewModelFromDocument(doc),
+                ));
+              }
             // 作成したメディアアイテムのリストをListViewで表示します。
-            return ListView(children: mediaItems);
-          },
+              return ListView(children: mediaItems);
+            },
+          ),
+          ],
         ),
       ),
     );

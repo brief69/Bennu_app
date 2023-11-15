@@ -30,6 +30,7 @@ class ContactPageState extends State<ContactPage> {
       appBar: AppBar(
         title: Text('Contacts', style: theme.textTheme.titleLarge),
         backgroundColor: theme.appBarTheme.backgroundColor,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

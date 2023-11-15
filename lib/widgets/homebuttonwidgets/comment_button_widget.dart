@@ -56,7 +56,7 @@ class CommentWidget extends StatelessWidget {
                 style: theme.textTheme.bodyMedium,
               ),
               const Spacer(),
-              const Text(
+              Text(
                 '返信', 
                 style: theme.textTheme.bodyMedium,
               ),

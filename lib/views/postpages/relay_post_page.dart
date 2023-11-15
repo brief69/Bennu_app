@@ -12,7 +12,7 @@ class RelayPostPage extends StatefulWidget {
 }
 
 class RelayPostPageState extends State<RelayPostPage> {
-  List<DocumentSnapshot>? _buyHistory; // 購入履歴データを保持するリスト
+  List<DocumentSnapshot>? _buyHistory; // Lists holding purchase history data
 
   @override
   void initState() {
@@ -37,15 +37,16 @@ class RelayPostPageState extends State<RelayPostPage> {
         backgroundColor: theme.appBarTheme.backgroundColor,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
               backgroundColor: theme.primaryColor,
+              ),
               onPressed: () {
-                // モーダルで購入履歴を表示する
+                // Display purchase history in modal
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
@@ -67,26 +68,25 @@ class RelayPostPageState extends State<RelayPostPage> {
                   },
                 );
               },
-              child: const Text(
+              child:  Text(
                 '購入履歴を選択', 
-                style: theme.textTheme.button
+                style: theme.textTheme.labelLarge
               ), 
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 hintText: '変わった点を記載する',
-                style: theme.textTheme.bodyMedium,
+                hintStyle: theme.textTheme.bodyMedium,
               ),
             ),
             const SizedBox(height: 10),
-
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 hintText: '異なる点を説明する',
-                style: theme.textTheme.bodyMedium,
+                hintStyle: theme.textTheme.bodyMedium,
+              ),
             ),
             const Spacer(),
-
             ElevatedButton(
               onPressed: () {
                 // Relayボタンの処理を実装

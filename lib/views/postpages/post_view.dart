@@ -35,17 +35,17 @@ class PostView extends ConsumerWidget {
               children: [
                 TextButton(
                   onPressed: viewModel.captureMediaWithCamera,
-                  child: const Text("動画を撮る（推奨）", style: theme.textTheme.labelLarge),
+                  child:  Text("動画を撮る（推奨）", style: theme.textTheme.labelLarge),
                 ),
                 TextButton(
                   onPressed: viewModel.pickMediaFromGallery,
-                  child: const Text("ライブラリから選択", style: theme.textTheme.labelLarge),
+                  child:  Text("ライブラリから選択", style: theme.textTheme.labelLarge),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const RelayPostPage()));
                   },
-                  child: const Text("Relayする（複利を得る）", style: theme.textTheme.labelLarge),
+                  child:  Text("Relayする（複利を得る）", style: theme.textTheme.labelLarge),
                 ),
               ],
             ),
@@ -53,7 +53,7 @@ class PostView extends ConsumerWidget {
           ...medias.map((media) => Image.file(File(media!.path))).toList(),
           TextField(
             onChanged: viewModel.setCaption,
-            decoration: const InputDecoration(hintText: "Caption...", hintStyle: theme.textTheme.bodyMedium),
+            decoration:  InputDecoration(hintText: "Caption...", hintStyle: theme.textTheme.bodyMedium),
           ),
           Row(
             children: [

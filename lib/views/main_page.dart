@@ -9,6 +9,7 @@ import 'package:bennu_app/views/searchpages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bennu_app/views/homepages/home_view.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MainPage extends ConsumerWidget {
   final List<Widget> _children = [
@@ -50,7 +51,7 @@ class MainPage extends ConsumerWidget {
               label: 'POST',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.),
+              icon: Icon(MdiIcons.box),
               label: 'BOX',
             ),
             BottomNavigationBarItem(

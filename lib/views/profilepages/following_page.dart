@@ -12,19 +12,29 @@ class FollowingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context); 
     return Scaffold(
-      appBar: AppBar(title: const Text('Following')),
+      appBar: AppBar(
+        title: Text('Following', style: theme.appBarTheme.titleTextStyle),
+        backgroundColor: theme.appBarTheme.backgroundColor,
+      ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance.collection('users').doc(uid).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(color: theme.primaryColor),
+            );
           }
           final followingList = (snapshot.data?.data() as Map<String, dynamic>)['following'] as List<dynamic>;
 
           return ListView.builder(
             itemCount: followingList.length,
             itemBuilder: (context, index) {
-              return ListTile(title: Text(followingList[index]));
+              return ListTile(
+                title: Text(
+                  followingList[index],
+                  style: theme.textTheme.bodyLarge,
+                ),
+              );
             },
           );
         },

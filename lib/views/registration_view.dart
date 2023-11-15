@@ -23,6 +23,7 @@ class RegistrationViewState extends State<RegistrationView> {
       appBar: AppBar(
         title: Text('新規登録', style: theme.textTheme.titleLarge),
         backgroundColor: theme.appBarTheme.backgroundColor,
+      ),
       body: Column(
           children: [
           TextField(controller: _emailController),

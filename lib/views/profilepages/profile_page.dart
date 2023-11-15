@@ -83,13 +83,13 @@ class ProfilePage extends ConsumerWidget {
                         onTap: () => viewModel.pickUserIcon(),
                         child: viewModel.userIcon != null 
                         ? Image.network(viewModel.userIcon!)
-                        : Image.asset('path/to/default/image.png'),// TODO #21:デフォルト画像パスを設定する
+                        : Image.asset('path/to/default/image.png'),
                       ),
                       ElevatedButton(
                         onPressed: goToEditProfilePage,
                         child: Text(viewModel.username),
                       ),
-                      Row( 
+                      Row(
                         children: [
                           GestureDetector(
                             onTap: showFollowers,
@@ -101,7 +101,10 @@ class ProfilePage extends ConsumerWidget {
                             child: Text('follower ${viewModel.followingCount}'),
                           ),
                         ],
-                      ), // TODO #20:フォローフォロワーのカウントはバックエンド側で行い、viewmodelでfirestoreから取得して、ここでは取得したデータを表示するのみにする
+                      ),
+                    ],
+                  ),
+                      ),
                     ],
                   ),
                 ),
