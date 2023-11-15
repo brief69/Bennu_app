@@ -1,10 +1,24 @@
 
 
 // repost_button_widget.dart
+import 'package:bennu_app/widgets/postbuttonwidgets/button_style.dart';
+import 'package:flutter/material.dart';
 
-// TODO #35:relay_post_page.dartで、最終的な投稿を行う時の魅力的なカスタムボタン。
+class RePostButton extends StatelessWidget {
+  const RePostButton({super.key});
 
-// 円形で大きめのtheme色のボタンで、中心にtheme色とフォントでpost という文字列が表示されてる。
-// 全ての必須項目のフィールドが完了すると、円形のボタンが押せるようになる。
-
-// 全てのフィールドの入力が完了していない段階では、postボタンは押せないようになっていることが視覚的にわかるようになっている。
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 200,
+      height: 50,
+      child: ElevatedButton(
+        style: CustomButtonStyle.greenRoundedButtonStyle(),
+        onPressed: () {
+        // Firestoreにデータを保存する処理（RePostの場合）
+        },
+        child: const Text('RePost'),
+      )
+    );
+  }
+}

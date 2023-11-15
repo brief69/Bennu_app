@@ -9,12 +9,27 @@ import '../models/media_model.dart';
 
 class FirestoreService {
   final _usersCollection = FirebaseFirestore.instance.collection('users');
+  
+  get db => '';
+  
+  get caption => null;
 
   Future<void> storeUser(User user) async {
     await _usersCollection.doc(user.id).set({
       'email': user.email,
       'publicKey': user.publicKey,
     });
+  }
+
+  Future<void> createPost(String userId, String videoUrl, String description) async {
+    final post = {
+      'userId': userId,
+      'videoUrl': videoUrl,
+      'caption': caption,
+      'timestamp': FieldValue.serverTimestamp(), // Use server timestamp
+    };
+
+    await db.collection('posts').add(post);
   }
 
   fetchUserLikes(id) {}
@@ -77,3 +92,4 @@ Future<List> fetchUserPosts(String userId) async {
 
     return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
   }
+
