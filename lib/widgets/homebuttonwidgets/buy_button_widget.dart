@@ -2,22 +2,28 @@
 
 // buy_button_widget.dart
 import 'dart:async';
-import 'package:bennu_app/widgets/pay_widget.dart';
+import 'package:bennu_app/widgets/actionwidgets/pay_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../actionwidgets/berry_pay_widget.dart';
+
 
 
 class BuyButton extends StatefulWidget {
   final double defaultWidth;
   final String price;
   final bool isExtendedByDefault;
+  final UserProfile receiverProfile;
+  final UserProfile senderProfile;
   
   const BuyButton({
   super.key, 
   this.defaultWidth = 150.0, 
   required this.price, 
   this.isExtendedByDefault = false,
+  required this.receiverProfile, 
+  required this.senderProfile,
 });
-
 
   @override
   BuyButtonState createState() => BuyButtonState();
@@ -92,12 +98,16 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
 
   void _launchPayment() {
     showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return PayWidget(price: double.parse(widget.price));
-      },
-    );
-  }
+    context: context,
+    builder: (BuildContext context) {
+      return PayWidget(
+        price: double.parse(widget.price),
+        receiverProfile: widget.receiverProfile,
+        senderProfile: widget.senderProfile,
+      );
+    },
+  );
+}
 
   @override
   void dispose() {

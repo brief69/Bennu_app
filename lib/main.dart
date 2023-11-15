@@ -7,10 +7,13 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'views/homepages/home_view.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Flutterバインディングの初期化
-  await Firebase.initializeApp(); // Firebaseの初期化
-  Stripe.publishableKey = 'YOUR_PUBLISHABLE_KEY'; // Stripeの公開可能キーの設定
-  runApp(const MyApp()); // アプリケーションを実行
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Stripe.publishableKey = 'YOUR_PUBLISHABLE_KEY';
+  Stripe.merchantIdentifier = 'your_apple_merchant_identifier';
+  Stripe.urlScheme = 'your_url_scheme';
+  await Stripe.instance.applySettings();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,14 +24,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'bennu_app',
       theme: ThemeData(
-        // アプリの基本的な色スキームをカスタマイズします。
+        // Basic color scheme of the app
         colorScheme: const ColorScheme.light(
           primary: Color.fromARGB(255, 0, 26, 1), // 主要なウィジェット色
           onPrimary: Colors.white, // 主要色の上のテキスト・アイコン色
           surface: Color.fromARGB(255, 0, 26, 1), // カードやメニューの背景色
           onSurface: Colors.white, // 表面色の上のテキスト・アイコン色
         ),
-        // AppBarのテーマをカスタマイズします。
+        // AppBar Theme Customization
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(255, 0, 26, 1),
           titleTextStyle: TextStyle(color: Colors.white),

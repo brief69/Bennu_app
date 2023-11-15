@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../viewmodels/cart_viewmodel.dart';
-import '../counter_widget.dart';
+import '../actionwidgets/counter_widget.dart';
 
 class InCartWidget extends StatefulWidget {
   final String productId;

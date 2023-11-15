@@ -24,7 +24,7 @@ dependencies:
   passkeys: ^1.0.2
   flutter_secure_storage:
   flutter_stripe: 
-  qr_flutter:
+  qr_flutter: ^4.1.0
   http: ^1.1.4
   flutter_riverpod: ^1.0.3+1
   url_launcher:

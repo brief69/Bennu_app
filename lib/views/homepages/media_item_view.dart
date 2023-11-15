@@ -123,16 +123,18 @@ class MediaItemViewState extends State<MediaItemView> {
           top: 280, // OtherWidgetの下に配置するための適切な高さ
           right: 16, // 右側からの距離
           child: BuyButton(
-            price: '価格', // 例：'￥1000'
+            price: '価格', 
+            receiverProfile: null, 
+            senderProfile: null,
           ),
         ),
         // InCartWidgetの配置
         const Positioned(
-          top: 340, // BuyButtonの下に配置するための適切な高さ
-          right: 16, // 右側からの距離
+          top: 340, 
+          right: 16,
           child: InCartWidget(
-            productId: '商品ID', // 例：'product123'
-            stock: 10, // 在庫数
+            productId: '商品ID',
+            stock: 0, // 在庫数
             initialInCart: 0, // カート初期数
           ),
         ),
@@ -156,7 +158,7 @@ class MediaItemViewState extends State<MediaItemView> {
           bottom: 16, // 下部からの距離
           right: 120, // RelayWidgetの左側に配置
           child: PriceWidget(
-            priceInYen: 1000, // 例：1000円
+            priceInYen: 0,
           ),
         ),
         // StockWidgetの配置
@@ -181,7 +183,7 @@ class MediaItemViewState extends State<MediaItemView> {
   }
 }
 
-// MediaReelは、複数のMediaViewModelを持つページビューを定義します。
+// MediaReelは、複数のMediaViewModelを持つpageviewを定義
 class MediaReel extends StatefulWidget {
   final List<MediaViewModel> viewModels;
 
