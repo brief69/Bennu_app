@@ -28,7 +28,7 @@ class HomeViewState extends State<HomeView> {
     // postDataからMediaModelを作成し、それを使用してMediaViewModelを作成します。
     return MediaViewModel(
       MediaModel(
-        firestore: widget.firestore, videoUrl: '', userIcon: '', likes: null, comments: null, other: '', buy: null, incart: null, shares: null, caption: '', stock: null, price: null, relay: null, postId: '', userId: '',
+        firestore: widget.firestore, videoUrl: '', userIcon: '', likes: , comments: null, other: '', buy: null, incart: null, shares: null, caption: '', stock: null, price: null, relay: null, postId: '', userId: '',
       ),
     );
   }
@@ -45,8 +45,8 @@ class HomeViewState extends State<HomeView> {
           // タブバーをAppBarのbottomに設定します。
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'オススメ'), // おすすめタブ
-              Tab(text: 'フォロー'), // フォロータブ
+              Tab(text: 'おすすめ'),
+              Tab(text: 'フォロー'),
               Tab(icon: Icon(Icons.notifications)),
             ],
           ),

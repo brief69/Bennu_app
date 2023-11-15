@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../models/widgetmodels/comments.dart';
 import '../../widgets/homebuttonwidgets/comment_button_widget.dart';
 
-
 class CommentsPage extends StatelessWidget {
   final List<Comment> comments = [
     Comment(
@@ -28,7 +27,8 @@ class CommentsPage extends StatelessWidget {
         backgroundColor: theme.appBarTheme.backgroundColor,
         title: Text(
           'Comments', 
-          style: theme.appBarTheme.titleTextStyle, 
+          style: theme.appBarTheme.titleTextStyle,
+        ),
       ),
       body: ListView.builder(
         itemCount: comments.length,
@@ -37,17 +37,18 @@ class CommentsPage extends StatelessWidget {
         },
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  const EdgeInsets.all(8.0),
         child: TextFormField(
-          decoration: const InputDecoration(
+          decoration:  InputDecoration(
             fillColor: Colors.white,
             filled: true,
             hintText: 'コメントを入力...',
             hintStyle: theme.textTheme.bodyMedium,
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
           ),
         ),
       ),
     );
   }
 }
+
