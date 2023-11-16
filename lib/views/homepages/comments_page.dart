@@ -2,7 +2,7 @@
 
 // comments_page.dart
 import 'package:flutter/material.dart';
-import '../../models/widgetmodels/comments.dart';
+import '../../models/homewidgetmodels/comments.dart';
 import '../../widgets/homebuttonwidgets/comment_button_widget.dart';
 
 class CommentsPage extends StatelessWidget {

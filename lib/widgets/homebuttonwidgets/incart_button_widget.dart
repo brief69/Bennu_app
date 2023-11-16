@@ -15,7 +15,7 @@ class InCartWidget extends StatefulWidget {
     Key? key,
     required this.productId,
     required this.stock,
-    required this.initialInCart,
+    required this.initialInCart, required String postId,
   }) : super(key: key);
 
   @override

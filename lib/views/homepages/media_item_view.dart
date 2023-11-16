@@ -1,6 +1,7 @@
 
 
 // media_item_view.dart
+import 'package:bennu_app/widgets/actionwidgets/berry_pay_widget.dart';
 import 'package:bennu_app/widgets/homebuttonwidgets/like_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -16,23 +17,21 @@ import '../../widgets/homebuttonwidgets/share_button_widget.dart';
 import '../../widgets/homebuttonwidgets/stock_button_widget.dart';
 import '../../widgets/homebuttonwidgets/usericon_button_widget.dart';
 
-// ステートフルウィジェットMediaItemViewを定義します。
 class MediaItemView extends StatefulWidget {
-  // このビューに対応するViewModelを保持します。
   final MediaViewModel viewModel;
   const MediaItemView({
     required this.viewModel,
-    Key? key,
+    Key? key, required UserProfile receiverProfile, required UserProfile senderProfile,
   }) : super(key: key);
 
   @override
   MediaItemViewState createState() => MediaItemViewState();
 }
-
-// MediaItemViewのステートクラスを定義します。
 class MediaItemViewState extends State<MediaItemView> {
-  // VideoPlayerControllerを初期化します。
   late VideoPlayerController _controller;
+  
+  get receiverProfileInstance => null;
+  get senderProfileInstance => null; //　初期化
 
   @override
   void initState() {
@@ -98,8 +97,8 @@ class MediaItemViewState extends State<MediaItemView> {
           top: 100, // UserIconWidgetの下に配置するための適切な高さ
           right: 16, // 右側からの距離
           child: LikeButtonWidget(
-            postId: '投稿ID', // 例：'postId123'
-            userId: 'ユーザーID', // 例：'userId456'
+            postId: '',
+            userId: 'ユーザーID',
           ),
         ),
         Positioned(
@@ -119,13 +118,14 @@ class MediaItemViewState extends State<MediaItemView> {
           child: OtherWidget(),
         ),
         // BuyButtonの配置
-        const Positioned(
+        Positioned(
           top: 280, // OtherWidgetの下に配置するための適切な高さ
           right: 16, // 右側からの距離
           child: BuyButton(
             price: '価格', 
-            receiverProfile: null, 
-            senderProfile: null,
+            isExtendedByDefault: true,  // 必要に応じて指定
+            receiverProfile: receiverProfileInstance,  // UserProfile型のインスタンス
+            senderProfile: senderProfileInstance,  // UserProfile型のインスタンス
           ),
         ),
         // InCartWidgetの配置
@@ -134,8 +134,9 @@ class MediaItemViewState extends State<MediaItemView> {
           right: 16,
           child: InCartWidget(
             productId: '商品ID',
-            stock: 0, // 在庫数
-            initialInCart: 0, // カート初期数
+            stock: 0,
+            initialInCart: 0, 
+            postId: '',
           ),
         ),
         // ShareWidgetの配置
@@ -143,20 +144,20 @@ class MediaItemViewState extends State<MediaItemView> {
           top: 400, // InCartWidgetの下に配置するための適切な高さ
           right: 16, // 右側からの距離
           child: ShareWidget(
-            textToShare: '共有したいテキスト', // 例：'Check out this cool video!'
-            subject: '任意のサブジェクト', // 例：'Video Share'
+            textToShare: '共有したいテキスト',
+            subject: '任意のサブジェクト',
           ),
         ),
         // RelayWidgetの配置
         const Positioned(
-          bottom: 16, // 下部からの距離
-          right: 60, // シェアボタンの右側に配置
+          bottom: 16,
+          right: 60,
           child: RelayWidget(),
         ),
         // PriceWidgetの配置
         const Positioned(
-          bottom: 16, // 下部からの距離
-          right: 120, // RelayWidgetの左側に配置
+          bottom: 16,
+          right: 120,
           child: PriceWidget(
             priceInYen: 0,
           ),
@@ -196,6 +197,10 @@ class MediaReel extends StatefulWidget {
 // MediaReelのステートクラスを定義します。
 class MediaReelState extends State<MediaReel> {
   final List<GlobalKey<MediaItemViewState>> _keys = [];
+  
+  get receiverProfileInstance => null;
+  
+  get senderProfileInstance => null;
 
   @override
   void initState() {
@@ -228,7 +233,7 @@ class MediaReelState extends State<MediaReel> {
           },
           child: MediaItemView(
             key: _keys[index],
-            viewModel: viewModel,
+            viewModel: viewModel, senderProfile: senderProfileInstance, receiverProfile: receiverProfileInstance,
           ),
         );
       },

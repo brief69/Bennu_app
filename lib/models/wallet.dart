@@ -8,4 +8,6 @@ class Wallet {
   Wallet({required this.publicKey, required this.privateKey});
 }
 
-// TODO: publicQrもここに追加,,,?
+// TODO: #42 publicQrもここに追加する？
+// TODO: #43 これなにを担ってるっけ？
+// 

@@ -2,7 +2,7 @@
 
 // user_media_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/media_model.dart';
+import '../models/homewidgetmodels/media_model.dart';
 import '../services/firestore_service.dart';
 import 'current_user_provider.dart';
 

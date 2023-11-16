@@ -16,9 +16,15 @@ class RePostButton extends StatelessWidget {
         style: CustomButtonStyle.greenRoundedButtonStyle(),
         onPressed: () {
         // Firestoreにデータを保存する処理（RePostの場合）
+        // repostの場合、
+        // 動画は元の動画を参照されることもある。
+        // captionが変わって、商品の異なる部分
+        // もとの投稿のいいね数は参照するべきかな。
+        // するべきだな。。
+        // 
         },
         child: const Text('RePost'),
       )
     );
   }
-}
+}// TODO: 実際の再投稿のバックエンドを実装しなければならない

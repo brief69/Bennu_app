@@ -3,7 +3,7 @@
 // relay_button_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../models/widgetmodels/relay_model.dart';
+import '../../models/homewidgetmodels/relay_model.dart';
 import '../../viewmodels/widgetsviewmodels/relay_viewmodel.dart';
 
 

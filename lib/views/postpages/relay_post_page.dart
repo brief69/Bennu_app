@@ -4,6 +4,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/postbuttonwidgets/repost_button_widget.dart';
+
 class RelayPostPage extends StatefulWidget {
   const RelayPostPage({super.key});
 
@@ -87,12 +89,7 @@ class RelayPostPageState extends State<RelayPostPage> {
               ),
             ),
             const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                // Relayボタンの処理を実装
-              },
-              child: const Text('RePost'),// TODO: #36 カスタムボタンを作成して配置する。
-            ),
+              const RePostButton(),
           ],
         ),
       ),

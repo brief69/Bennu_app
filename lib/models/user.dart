@@ -36,8 +36,8 @@ class User {
       postHistory: List<dynamic>.from(doc['postHistory']),
       likesHistory: List<dynamic>.from(doc['likesHistory']),
       buyHistory: List<dynamic>.from(doc['buyHistory']),
-      followingCount: doc['followingCount'] ?? 0,  // null safetyを考慮
-      followerCount: doc['followerCount'] ?? 0,    // null safetyを考慮
+      followingCount: doc['followingCount'] ?? 0,
+      followerCount: doc['followerCount'] ?? 0,
     );
   }
 

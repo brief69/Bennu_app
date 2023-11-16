@@ -2,7 +2,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../viewmodels/berry_pay_viewmodel.dart';
+import '../viewmodels/billviewmodels/berry_pay_viewmodel.dart';
 import '../widgets/actionwidgets/berry_pay_widget.dart';
 
 final paymentViewModelProvider = Provider<PaymentViewModel>((ref) {

@@ -3,7 +3,7 @@
 // profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../models/media_model.dart';
+import '../../models/homewidgetmodels/media_model.dart';
 import '../../providers/current_user_provider.dart';
 import '../../providers/user_media_providers.dart';
 import '../../viewmodels/media_viewmodel.dart';

@@ -1,12 +1,12 @@
 
 
 // post_view.dart
-
 import 'package:flutter/material.dart';
 import 'package:bennu_app/viewmodels/post_viewmodel.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:io';
 import '../../models/currency.dart';
+import '../../widgets/postbuttonwidgets/post_button_widget.dart';
 import 'relay_post_page.dart';
 
 class PostView extends ConsumerWidget {
@@ -73,7 +73,7 @@ class PostView extends ConsumerWidget {
               Column(
                 children: [
                   RadioListTile<Currency>(
-                    title: const Text('円'),
+                    title: const Text('yen'),
                     value: Currency.yen,
                     groupValue: viewModel.selectedCurrency,
                     onChanged: (Currency? value) {
@@ -118,11 +118,7 @@ class PostView extends ConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: theme.floatingActionButtonTheme.backgroundColor,
-        onPressed: viewModel.uploadMediaAndCaption,
-        child: const Icon(Icons.upload),
-      ),
+      floatingActionButton: const PostButton(),
     );
   }
-}// TODO: #15 最終的な投稿ボタンをwidgetsで作る
+}

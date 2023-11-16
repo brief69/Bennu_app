@@ -34,7 +34,6 @@ class MediaModel {
     required this.relay,
     required this.postId,
     required this.userId, required FirebaseFirestore firestore,
-    // required FirebaseFirestore firestore, // このフィールドは必要か再確認
   });
 
   get mediaItems => null;

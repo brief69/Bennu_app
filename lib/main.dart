@@ -4,6 +4,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'services/firebase_notification_service.dart';
 import 'views/homepages/home_view.dart';
 
 Future<void> main() async {
@@ -13,6 +14,9 @@ Future<void> main() async {
   Stripe.merchantIdentifier = 'your_apple_merchant_identifier';
   Stripe.urlScheme = 'your_url_scheme';
   await Stripe.instance.applySettings();
+  FirebaseNotificationService firebaseNotificationService = FirebaseNotificationService();
+  await firebaseNotificationService.initialize();
+
   runApp(const MyApp());
 }
 

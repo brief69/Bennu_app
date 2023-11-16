@@ -3,8 +3,9 @@
 // home_view.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../models/media_model.dart';
+import '../../models/homewidgetmodels/media_model.dart';
 import '../../viewmodels/media_viewmodel.dart';
+import '../../widgets/actionwidgets/berry_pay_widget.dart';
 import '../../widgets/bell_tab_widget.dart';
 import 'media_item_view.dart';
 
@@ -65,11 +66,22 @@ class HomeViewState extends State<HomeView> {
               List<MediaItemView> mediaItems = [];
             // Firestoreから取得したドキュメントのリストを繰り返し処理します。
               for (var doc in snapshot.data!.docs) {
+                // UserProfile インスタンスを作成
+                UserProfile receiverProfile = UserProfile(
+                  solanaAddress: '受取人のSolanaアドレス', // 適切な値を設定
+                  username: '受取人のユーザーネーム', // 適切な値を設定
+                );
+                UserProfile senderProfile = UserProfile(
+                  solanaAddress: '送信者のSolanaアドレス', // 適切な値を設定
+                  username: '送信者のユーザーネーム', // 適切な値を設定
+                );
               // 各ドキュメントからMediaItemViewを作成し、リストに追加します。
                 mediaItems.add(MediaItemView(
                 // Firestoreドキュメントの各フィールドからウィジェットにデータを渡します。
                 // _createViewModelFromDocument関数を使用してViewModelを生成し、ウィジェットに渡します。
                   viewModel: _createViewModelFromDocument(doc),
+                  receiverProfile: receiverProfile,
+                  senderProfile: senderProfile,
                 ));
               }
             // 作成したメディアアイテムのリストをListViewで表示します。

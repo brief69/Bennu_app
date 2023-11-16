@@ -1,7 +1,7 @@
 
 
 // media_viewmodel.dart
-import '../models/media_model.dart';
+import '../models/homewidgetmodels/media_model.dart';
 
 class MediaViewModel {
   final MediaModel media;

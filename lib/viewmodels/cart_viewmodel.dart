@@ -1,7 +1,7 @@
 
 
 // vart_viewmodel.dart
-import 'package:bennu_app/models/media_model.dart';
+import 'package:bennu_app/models/homewidgetmodels/media_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
@@ -37,6 +37,4 @@ class CartViewModel extends StateNotifier<List<MediaModel>> {
   void removeItem(String itemId) {
     state = state.where((item) => item.postId != mediaId).toList();
   }
-
-  // その他の必要なメソッド
 }

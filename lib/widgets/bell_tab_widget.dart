@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/widgetsviewmodels/bell_viewmodel.dart';
+import 'package:bennu_app/models/notification.dart' as modelNotification;
 
 class BellTabWidget extends ConsumerWidget {
   const BellTabWidget({super.key});
@@ -12,9 +13,12 @@ class BellTabWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(bellTabViewModelProvider);
 
-    return StreamBuilder<int>(
-      stream: viewModel.unreadNotificationsCount,
+    return FutureBuilder<int>(
+      future: viewModel.unreadNotificationsCount,
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
         final count = snapshot.data ?? 0;
         return InkWell(
           onTap: () => _showNotificationsPopup(context, viewModel),
@@ -43,6 +47,44 @@ class BellTabWidget extends ConsumerWidget {
   }
 
   void _showNotificationsPopup(BuildContext context, BellTabViewModel viewModel) {
-    // 通知のポップアップを表示するロジック
-  }
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      final theme = Theme.of(context);
+      return AlertDialog(
+        title: Text('Notifications', style: theme.textTheme.titleLarge),
+        content: FutureBuilder<List<modelNotification.Notification>>(
+          future: viewModel.getNotifications(), // 通知リストの取得
+          builder: (BuildContext context, AsyncSnapshot<List<modelNotification.Notification>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(); // ローディングインジケータ
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}', style: theme.textTheme.titleMedium); // エラー表示
+            } else if (snapshot.hasData) {
+              // 通知リストの表示
+              return ListView(
+                children: snapshot.data!.map((notification) {
+                  return ListTile(
+                    title: Text(notification.title, style: theme.textTheme.titleMedium),
+                    subtitle: Text(notification.body, style: theme.textTheme.bodyMedium),
+                  );
+                }).toList(),
+              );
+            } else {
+              return const Text('No notifications'); // 通知がない場合
+            }
+          },
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Close', style: theme.textTheme.labelLarge),
+            onPressed: () {
+              Navigator.of(context).pop(); // ダイアログを閉じる
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }

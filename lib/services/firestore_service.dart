@@ -1,11 +1,12 @@
 
 
 // firestore_service.dart
-import 'package:bennu_app/models/widgetmodels/comments.dart';
+import 'package:bennu_app/models/homewidgetmodels/comments.dart';
 import 'package:bennu_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/media_model.dart';
+import '../models/currency.dart';
+import '../models/homewidgetmodels/media_model.dart';
 
 class FirestoreService {
   final _usersCollection = FirebaseFirestore.instance.collection('users');
@@ -21,14 +22,25 @@ class FirestoreService {
     });
   }
 
-  Future<void> createPost(String userId, String videoUrl, String description) async {
+  Future<void> createPost({
+    required String userId,
+    required String videoUrl,
+    required String caption,
+    required double price,
+    required int stock,
+    required Currency currency,
+     // その他必要なデータを引数として追加
+  }) async {
     final post = {
       'userId': userId,
       'videoUrl': videoUrl,
       'caption': caption,
+      'price': price,
+      'stock': stock,
+      'currency': currency.toString(),
       'timestamp': FieldValue.serverTimestamp(), // Use server timestamp
+      // その他のフィールドを追加
     };
-
     await db.collection('posts').add(post);
   }
 
