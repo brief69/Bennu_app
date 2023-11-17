@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/widgetsviewmodels/bell_viewmodel.dart';
+// ignore: library_prefixes
 import 'package:bennu_app/models/notification.dart' as modelNotification;
 
 class BellTabWidget extends ConsumerWidget {
