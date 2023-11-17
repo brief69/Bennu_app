@@ -53,7 +53,8 @@ class BerryPayment extends ConsumerWidget {
             children: <Widget>[
               const Icon(Icons.arrow_upward),
               const SizedBox(width: 10),
-              Text('Price: ${priceViewModel}berry'),// TODO: #39 Create and place unit notations
+              Image.asset('assets/berryIcon_transparent.png', width: 20, height: 20),
+              Text('${priceViewModel.price.toStringAsFixed(2)} berry'), // 価格を表示
             ],
           ),
           // SenderQr and UserName

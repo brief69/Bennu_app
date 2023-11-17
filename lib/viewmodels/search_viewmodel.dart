@@ -21,7 +21,6 @@ class SearchViewModel extends StateNotifier<SearchResult> {
   }
 
   Future<void> fetchSearchResults(String query) async {
-    try {
       final sitesFuture = _fetchFromFirestore('sites', query, (data) => CustomContent(name: data['name'], imageUrl: data['imageUrl']));
       final productsFuture = _fetchFromFirestore('products', query, (data) => Product(name: data['name'], imageUrl: data['imageUrl'], id: '', price: null, quantity: null));
       
@@ -29,8 +28,6 @@ class SearchViewModel extends StateNotifier<SearchResult> {
       final List<Product> products = await productsFuture;
 
       state = SearchResult(sites: sites, products: products);
-    } catch (e) {
-      // TODO: Handle the error appropriately, e.g. by updating the state to reflect the error
-    }
-  }
+  } 
 }
+

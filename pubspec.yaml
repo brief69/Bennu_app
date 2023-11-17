@@ -51,6 +51,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/resized_1.png  # 画像ファイルのパスを指定する
+    - assets/berryIcon_transparent.png
   # flutter_iconsの設定をflutterセクションの中に入れる
 flutter_icons:
   android: true

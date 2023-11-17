@@ -4,7 +4,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PriceViewModel extends StateNotifier<bool> {
-  static const int berryPrice = 300; // 1berryの価格
+  static const int berryPrice = 300;
+
+  num get currentPrice => isBerry ? berryPrice : (berryPrice * 為替レート);
 
   // 価格表記を円にするかberryにするかの状態管理
   bool isBerry = true;
@@ -19,5 +21,5 @@ class PriceViewModel extends StateNotifier<bool> {
 }
 
 final priceViewModelProvider = StateNotifierProvider<PriceViewModel, bool>((ref) {
-  return PriceViewModel(PriceViewModel as bool);
+  return PriceViewModel(true); // 初期状態として`true`を渡す
 });
