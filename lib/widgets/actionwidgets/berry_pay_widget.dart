@@ -14,6 +14,8 @@ class UserProfile {
   final String username;
 
   UserProfile({required this.solanaAddress, required this.username});
+
+  get id => "";
 }
 
 class BerryPayment extends ConsumerWidget {
