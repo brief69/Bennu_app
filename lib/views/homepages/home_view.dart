@@ -36,25 +36,7 @@ class HomeViewState extends ConsumerState<HomeView> with TickerProviderStateMixi
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              color: Colors.transparent,
-              child: TabBar(
-                controller: _tabController,
-                indicatorColor: Colors.white,
-                tabs: const [
-                  Tab(text: 'おすすめ'),
-                  Tab(text: 'フォロー'),
-                  Tab(icon: Icon(Icons.notifications)),
-                ],
-              ),
-            ),
-          ),
           Positioned.fill(
-            top: MediaQuery.of(context).padding.top + kToolbarHeight,
             child: TabBarView(
               controller: _tabController,
               children: [
@@ -63,6 +45,23 @@ class HomeViewState extends ConsumerState<HomeView> with TickerProviderStateMixi
                 const BellTabWidget(), // 通知タブのコンテンツ
               ],
             ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).padding.top,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.transparent,
+              child: TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.white,
+                  tabs: const [
+                    Tab(text: 'おすすめ'),
+                    Tab(text: 'フォロー'),
+                    Tab(icon: Icon(Icons.notifications)),
+                  ],
+              ),
+            )
           ),
         ],
       ),

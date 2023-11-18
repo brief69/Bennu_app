@@ -34,17 +34,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'bennu_app',
       theme: ThemeData(
-        // Basic color scheme of the app
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Color.fromARGB(255, 0, 26, 1),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 0, 26, 1),
+          titleTextStyle: TextStyle(color: Colors.white),
+        ),
         colorScheme: const ColorScheme.light(
           primary: Color.fromARGB(255, 0, 26, 1), // 主要なウィジェット色
           onPrimary: Colors.white, // 主要色の上のテキスト・アイコン色
           surface: Color.fromARGB(255, 0, 26, 1), // カードやメニューの背景色
           onSurface: Colors.white, // 表面色の上のテキスト・アイコン色
-        ),
-        // AppBar Theme Customization
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 0, 26, 1),
-          titleTextStyle: TextStyle(color: Colors.white),
         ),
         // FloatingActionButtonのテーマをカスタマイズします。
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
