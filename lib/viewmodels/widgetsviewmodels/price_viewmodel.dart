@@ -5,8 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PriceViewModel extends StateNotifier<bool> {
   static const int berryPrice = 300;
-
-  num get currentPrice => isBerry ? berryPrice : (berryPrice * 為替レート);
+  // 仮に為替レートを1.0としてるが実際にはレートを取得する。
+  static const num exchangeRate = 1.0;
+  // TODO: 日本円の為替レートを取得して表示する 
+  num get currentPrice => isBerry ? berryPrice : (berryPrice * exchangeRate);
 
   // 価格表記を円にするかberryにするかの状態管理
   bool isBerry = true;
