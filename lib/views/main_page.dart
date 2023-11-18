@@ -13,7 +13,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class MainPage extends ConsumerWidget {
   final List<Widget> _children = [
-    HomeView(),
+    const HomeView(),
     const SearchPage(),
     const PostView(),
     const CartView(),
@@ -33,8 +33,7 @@ class MainPage extends ConsumerWidget {
         onTap: viewModel.changeIndex,
         currentIndex: viewModel.currentIndex,
         type: BottomNavigationBarType.fixed,
-        // ignore: deprecated_member_use
-        backgroundColor: theme.bottomAppBarColor,
+        backgroundColor: Theme.of(context).bottomAppBarTheme.color,
         selectedItemColor: theme.tabBarTheme.labelColor,
         unselectedItemColor: theme.tabBarTheme.unselectedLabelColor,
           items: const [

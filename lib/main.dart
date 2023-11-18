@@ -3,13 +3,17 @@
 // main.dart
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'firebase_options.dart';
 import 'services/firebase_notification_service.dart';
-import 'views/homepages/home_view.dart';
+import 'views/main_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Stripe.publishableKey = 'YOUR_PUBLISHABLE_KEY';
   Stripe.merchantIdentifier = 'your_apple_merchant_identifier';
   Stripe.urlScheme = 'your_url_scheme';
@@ -17,7 +21,9 @@ Future<void> main() async {
   FirebaseNotificationService firebaseNotificationService = FirebaseNotificationService();
   await firebaseNotificationService.initialize();
 
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -48,16 +54,14 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.white), // 通常のテキストスタイル
           bodyMedium: TextStyle(color: Colors.white), // 同上、少し小さいテキスト
-          // その他のテキストスタイルも同様にカスタマイズできます。
         ),
         tabBarTheme: const TabBarTheme(
-          labelColor: Colors.white, // 選択されたタブのラベルの色
-          unselectedLabelColor: Colors.grey, // 選択されていないタブのラベルの色
+          labelColor: Colors.white, // 選択タブのラベルの色
+          unselectedLabelColor: Colors.grey, // 未選択タブのラベルの色
         ),
-        // アプリ全体のフォントをRobotoに設定します。
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto', // アプリ全体のフォント
       ),
-      home: HomeView(), // HomeViewウィジェットをホームページとして使用します。
+      home: MainPage(),
     );
   }
 }

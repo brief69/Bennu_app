@@ -176,7 +176,7 @@ class MediaItemViewState extends State<MediaItemView> {
           right: 20, // 右側からの距離
           left: 20, // 左側からの距離
           child: CaptionButtonWidget(
-            caption: 'ここにキャプションのテキストを挿入', // 例：キャプションテキスト
+            caption: 'ここにキャプションのテキストを挿入',
           ),
         ),
       ],
