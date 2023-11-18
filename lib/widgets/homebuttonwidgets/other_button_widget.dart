@@ -31,7 +31,6 @@ class OtherWidget extends StatelessWidget {
           value: 'hide',
           child: Text('表示しない'),
         ),
-        // TODO 他のメニュー項目をここに追加する
       ],
       icon: const Icon(Icons.more_horiz), 
     );
