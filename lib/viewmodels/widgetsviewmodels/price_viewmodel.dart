@@ -22,6 +22,8 @@ class PriceViewModel extends StateNotifier<bool> {
   }
 }
 
+// StateNotifierProviderのジェネリック型を<PriceViewModel, PriceViewModel>に変更します。
 final priceViewModelProvider = StateNotifierProvider<PriceViewModel, bool>((ref) {
-  return PriceViewModel(true); // 初期状態として`true`を渡す
+  return PriceViewModel(true); // PriceViewModelのインスタンスを返す
 });
+

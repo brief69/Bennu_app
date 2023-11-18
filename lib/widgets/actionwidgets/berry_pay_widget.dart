@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
 import '../../providers/berry_pay_provider.dart';
 import '../../viewmodels/widgetsviewmodels/price_viewmodel.dart';
 import '../profile_widget.dart/balance_widget.dart';
@@ -30,8 +29,10 @@ class BerryPayment extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // キャストを使用してPriceViewModelにアクセス
+  final priceViewModel = ref.watch(priceViewModelProvider.notifier);
+  Text('${priceViewModel.currentPrice.toStringAsFixed(2)} berry');
     final viewModel = ref.watch(paymentViewModelProvider);
-    final priceViewModel = ref.watch(priceViewModelProvider);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -54,7 +55,7 @@ class BerryPayment extends ConsumerWidget {
               const Icon(Icons.arrow_upward),
               const SizedBox(width: 10),
               Image.asset('assets/berryIcon_transparent.png', width: 20, height: 20),
-              Text('${priceViewModel.price.toStringAsFixed(2)} berry'),
+              Text('${priceViewModel.currentPrice.toStringAsFixed(2)} berry'),
             ],
           ),
           // SenderQr and UserName
