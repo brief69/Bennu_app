@@ -134,5 +134,4 @@ class PostViewModel extends StateNotifier<List<XFile?>> {
 
     await postRef.update(post.toMap());
   }
-
 }
