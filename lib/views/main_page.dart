@@ -3,7 +3,7 @@
 // main_page.dart
 import 'package:bennu_app/providers/main_page_provider.dart';
 import 'package:bennu_app/views/cart_view.dart';
-import 'package:bennu_app/views/postpages/post_view.dart';
+import 'package:bennu_app/views/postpages/poststep1/post_tab_modal.dart';
 import 'package:bennu_app/views/profilepages/profile_page.dart';
 import 'package:bennu_app/views/searchpages/search_page.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class MainPage extends ConsumerWidget {
   final List<Widget> _children = [
     const HomeView(),
     const SearchPage(),
-    const PostView(),
+    const PostTabModal(),
     const CartView(),
     const ProfilePage(),
   ];

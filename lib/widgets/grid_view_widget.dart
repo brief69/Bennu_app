@@ -1,22 +1,27 @@
 
 
-// grid_view_widget.dart
+
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import '../viewmodels/media_viewmodel.dart';
 import '../views/homepages/media_item_view.dart';
 
 enum PageType {
-  history, likes, purchase, search, cart
+  history, likes, purchase, search, cart, relay
 }
 
 class GridViewWidget extends StatelessWidget {
   final List<MediaViewModel> mediaList;
   final PageType pageType;
+  final Widget Function(MediaViewModel)? customItemBuilder; 
+  final Widget? bottomNavigationBar;
 
   const GridViewWidget({
     Key? key,
     required this.mediaList,
     required this.pageType,
+    this.customItemBuilder,
+    this.bottomNavigationBar,
   }) : super(key: key);
 
   @override
@@ -30,17 +35,18 @@ class GridViewWidget extends StatelessWidget {
         final mediaItem = mediaList[index];
         return GestureDetector(
           onTap: () => navigateToMediaPage(context, mediaItem),
-          child: buildGridItem(mediaItem),
+          child: customItemBuilder != null
+          ? customItemBuilder!(mediaItem)
+          : buildDefaultGridItem(mediaItem),
         );
       },
     );
   }
 
-  Widget buildGridItem(MediaViewModel mediaItem) {
+  Widget buildDefaultGridItem(MediaViewModel mediaItem) {
     return Column(
       children: [
-        Image.network(mediaItem.videoUrl), // 動画のサムネイル表示
-        // 他の共通UI要素（例：キャプションやいいね数の表示）
+        VideoPlayerWidget(videoUrl: mediaItem.videoUrl),
         Text(mediaItem.caption),
         // ... その他の情報表示
       ],
@@ -54,5 +60,44 @@ class GridViewWidget extends StatelessWidget {
         builder: (context) => MediaReel(viewModels: [mediaItem]),
       ),
     );
+  }
+}
+
+class VideoPlayerWidget extends StatefulWidget {
+  final String videoUrl;
+
+  const VideoPlayerWidget({Key? key, required this.videoUrl}) : super(key: key);
+
+  @override
+  VideoPlayerWidgetState createState() => VideoPlayerWidgetState();
+}
+
+class VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network(widget.videoUrl)
+      ..initialize().then((_) {
+        setState(() {});
+        _controller.play();
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _controller.value.isInitialized
+        ? AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          )
+        : const CircularProgressIndicator();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/balance_provider.dart';
 
 class BalanceWidget extends ConsumerWidget {
-  const BalanceWidget({super.key});
+  const BalanceWidget({super.key, required String userId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

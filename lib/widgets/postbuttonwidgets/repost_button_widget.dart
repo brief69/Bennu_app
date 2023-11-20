@@ -27,4 +27,4 @@ class RePostButton extends StatelessWidget {
       )
     );
   }
-}// TODO: 実際の再投稿のバックエンドを実装しなければならない
+}

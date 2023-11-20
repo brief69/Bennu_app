@@ -1,6 +1,9 @@
 
 
 // incart_button_widget.dart
+import 'package:bennu_app/models/homewidgetmodels/media_model.dart';
+import 'package:bennu_app/viewmodels/home_viewmodel.dart';
+import 'package:bennu_app/viewmodels/media_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../viewmodels/cart_viewmodel.dart';
@@ -65,7 +68,7 @@ class InCartWidgetState extends State<InCartWidget> {
                 ? CountWidget(
                     currentCount: inCart,
                     maxCount: widget.stock,
-                    onCountChanged: (newCount) => _updateInCart(newCount, ref),
+                    onCountChanged: (newCount) => _updateInCart(newCount, ref), mediaItem: MediaViewModel(mediaViewModelProvider as MediaModel),
                   )
                 : Center(
                     child: Text(

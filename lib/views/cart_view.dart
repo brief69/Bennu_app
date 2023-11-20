@@ -1,5 +1,6 @@
 
 // cart_view.dart
+import 'package:bennu_app/widgets/actionwidgets/counter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/cart_viewmodel.dart';
@@ -7,7 +8,6 @@ import '../viewmodels/media_viewmodel.dart';
 import '../widgets/actionwidgets/berry_pay_widget.dart';
 import '../widgets/grid_view_widget.dart';
 import '../widgets/homebuttonwidgets/buy_button_widget.dart';
-
 
 class CartView extends ConsumerWidget {
   const CartView({super.key});
@@ -37,7 +37,22 @@ class CartView extends ConsumerWidget {
       body: GridViewWidget(
         mediaList: cartItems.map((item) => MediaViewModel(item)).toList(), // カート内の商品リストをMediaViewModelに変換
         pageType: PageType.cart,
-      ),
+        customItemBuilder: (mediaItem) => Column(
+          children: [
+            // TODO: #47 各グリッドのメディア、価格、個数のUI配置
+            Text(mediaItem.caption),
+            CountWidget(
+              mediaItem: mediaItem, 
+              currentCount: 1, 
+              maxCount: 10,
+              onCountChanged: (int value) {
+                ref.read(cartProvider.notifier).updateItemCount(mediaItem.id, value);
+              },
+            ),
+            Text('Price: ¥${mediaItem.price.toStringAsFixed(2)}'),
+          ],
+        ),
+      
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BuyButton(
@@ -46,7 +61,8 @@ class CartView extends ConsumerWidget {
           receiverProfile: receiverProfile,
           senderProfile: senderProfile,
         ),
-      ),
+      ), 
+      )
     );
   }
 }

@@ -79,7 +79,7 @@ class BerryPayment extends ConsumerWidget {
             child: const Text('Pay', style: TextStyle(fontFamily: 'Roboto')),
           ),
           // Show current balance
-          const BalanceWidget(),
+          const BalanceWidget(userId: '',),
         ],
       ),
     );

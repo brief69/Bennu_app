@@ -37,4 +37,6 @@ class CartViewModel extends StateNotifier<List<MediaModel>> {
   void removeItem(String itemId) {
     state = state.where((item) => item.postId != mediaId).toList();
   }
+
+  void updateItemCount(id, int value) {}
 }

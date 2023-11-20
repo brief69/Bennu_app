@@ -1,6 +1,7 @@
 
 
 // counter_widget.dart
+import 'package:bennu_app/viewmodels/media_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class CountWidget extends StatefulWidget {
@@ -12,7 +13,7 @@ class CountWidget extends StatefulWidget {
     Key? key,
     required this.currentCount,
     required this.maxCount,
-    required this.onCountChanged,
+    required this.onCountChanged, required MediaViewModel mediaItem,
   }) : super(key: key);
 
   @override
