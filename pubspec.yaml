@@ -36,6 +36,9 @@ dependencies:
   hooks_riverpod:
   share_plus: ^7.2.1
   material_design_icons_flutter: ^5.0.6595
+  tapioca: ^1.0.6+1
+  camera: ^0.10.5+5
+  intl: ^0.18.1
 
 dependency_overrides:
   http: ^0.13.3
@@ -45,14 +48,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutter_launcher_icons: ^0.9.2 # ここにバージョン番号を指定する
+  flutter_launcher_icons: ^0.9.2
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/resized_1.png  # 画像ファイルのパスを指定する
+    - assets/resized_1.png
     - assets/berryIcon_transparent.png
-  # flutter_iconsの設定をflutterセクションの中に入れる
+    
 flutter_icons:
   android: true
   ios: true

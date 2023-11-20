@@ -77,6 +77,8 @@ class Post {
       transactionHistory: map['transactionHistory'],
     );
   }
+
+  static fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> doc) {}
 }
 
 

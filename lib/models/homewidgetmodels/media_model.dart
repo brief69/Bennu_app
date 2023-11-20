@@ -33,7 +33,7 @@ class MediaModel {
     required this.price,
     required this.relay,
     required this.postId,
-    required this.userId, required FirebaseFirestore firestore,
+    required this.userId, required FirebaseFirestore firestore, required mediaItems,
   });
 
   get mediaItems => null;
@@ -70,7 +70,7 @@ class MediaModel {
       relay: relay ?? this.relay,
       postId: postId ?? this.postId,
       userId: userId ?? this.userId,
-      firestore: FirebaseFirestore.instance,
+      firestore: FirebaseFirestore.instance, mediaItems: null,
     );
   }
 
@@ -91,7 +91,7 @@ class MediaModel {
       relay: data['relay'],
       postId: data['postId'],
       userId: data['userId'],
-      firestore: FirebaseFirestore.instance,
+      firestore: FirebaseFirestore.instance, mediaItems: null,
     );
   }
 }

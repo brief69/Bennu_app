@@ -1,9 +1,8 @@
 
-
+// post_button_widget.dart
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:bennu_app/widgets/postbuttonwidgets/button_style.dart';
-import 'package:bennu_app/viewmodels/post_viewmodel.dart';
 
 class PostButton extends ConsumerWidget {
   const PostButton({super.key});
@@ -19,7 +18,7 @@ class PostButton extends ConsumerWidget {
         style: CustomButtonStyle.greenRoundedButtonStyle(),
         onPressed: () async {
           // メディアのアップロードと投稿データの作成・保存を行う
-          await postViewModel.uploadMediaAndCaption();
+          postViewModel.uploadMediaAndCaption;
         },
         child: const Text('Post'),
       ),
