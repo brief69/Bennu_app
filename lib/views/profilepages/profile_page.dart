@@ -3,6 +3,7 @@
 // profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../models/homewidgetmodels/media_model.dart';
 import '../../providers/current_user_provider.dart';
 import '../../providers/user_media_providers.dart';
@@ -16,7 +17,7 @@ import 'settings_page.dart';
 
 final viewModelProvider = Provider<ProfileViewModel>((ref) => ProfileViewModel());
 final userPostsProvider = FutureProvider<List<MediaModel>>((ref) async {
-    // ここでユーザーの投稿を取得するロジックを実装
+    // ここでユーザーの投稿を取得するロジック
       return []; // 仮のデータ
     });
 
@@ -134,11 +135,14 @@ class ProfilePage extends ConsumerWidget {
               length: 3,
               child: Column(
                 children: [
-                  const TabBar(
-                    tabs: [
-                      Tab(text: 'Post'),
-                      Tab(text: 'Likes'),
-                      Tab(text: 'Buy'),
+                  TabBar(
+                    indicator: BoxDecoration(
+                      color: theme.primaryColor,
+                    ),
+                    tabs: const [
+                      Tab(icon: Icon(Icons.post_add)),
+                      Tab(icon: Icon(Icons.favorite)),
+                      Tab(icon: Icon(MdiIcons.box)),
                     ],
                   ),
                   Expanded(
