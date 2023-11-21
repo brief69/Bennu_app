@@ -11,6 +11,7 @@ class PostTabModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return MaterialApp(
       home: DefaultTabController(
         length: 3,
@@ -23,18 +24,21 @@ class PostTabModal extends StatelessWidget {
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: theme.primaryColor,
+            selectedItemColor: theme.colorScheme.secondary, 
+            unselectedItemColor: theme.unselectedWidgetColor,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.movie),
-                label: '動画',
+                icon: Text('動画'),
+                label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.camera),
-                label: 'ショート',
+                icon: Text('ショート'), 
+                label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.history),
-                label: 'リレー',
+                icon: Text('リレーする'),
+                label: '',
               ),
             ],
           ),
