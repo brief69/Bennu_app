@@ -34,7 +34,7 @@ class _AddressSetPageState extends State<AddressSetPage> {
         backgroundColor: theme.appBarTheme.backgroundColor,
       ),
       // 背景色を設定
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.background,
       // bodyを設定
       body: Padding(
         // Paddingを設定
@@ -54,16 +54,22 @@ class _AddressSetPageState extends State<AddressSetPage> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               // TextFormFieldを設定
               TextFormField(
                 // デコレーションを設定
-                decoration: const InputDecoration(labelText: 'Address'),
+                decoration: const InputDecoration(
+                  labelText: 'Address',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 // バリデーションを設定
                 validator: (value) => value!.isEmpty ? 'Address is required' : null,
                 // 保存時の処理を設定
                 onSaved: (value) => address = value!,
+                // 入力文字色を設定
+                style: const TextStyle(color: Colors.black),
               ),
               // ElevatedButtonを設定
               ElevatedButton(
@@ -80,7 +86,12 @@ class _AddressSetPageState extends State<AddressSetPage> {
                   }
                 },
                 // ボタンのテキストを設定
-                child: const Text('OK'),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               // SizedBoxを設定
               const SizedBox(height: 20),
@@ -90,6 +101,7 @@ class _AddressSetPageState extends State<AddressSetPage> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               // 保存された住所を表示
@@ -97,6 +109,7 @@ class _AddressSetPageState extends State<AddressSetPage> {
                 savedAddress,
                 style: const TextStyle(
                   fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ],
