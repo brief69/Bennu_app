@@ -1,0 +1,51 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 全ユーザが読み取り可能、ただし書き込みは認証済みユーザのみ
+    match /items/{itemId} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    // 各ユーザのプロフィール: ユーザごとに読み書きの権限を制御
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // 注文情報: 認証済みユーザのみ読み書き可能
+    match /orders/{orderId} {
+      allow read, write: if request.auth.uid != null;
+    }
+
+    // プロモーション情報: 全ユーザ読み取り可能、書き込みは認証済みユーザのみ
+    match /promotions/{promotionId} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+    
+    // videosコレクションに対するルール
+    match /videos/{videoId} {
+      // 一般的には、認証されたユーザーだけが動画の情報を読むことができるようにします
+      allow read: if request.auth != null;
+      // ここでは、動画の追加や編集に関してのルールは簡略化のため省略しています
+
+      // commentsサブコレクションに対するルール
+      match /comments/{commentId} {
+        // 認証されたユーザーだけがコメントを読み取ることができる
+        allow read: if request.auth != null;
+        
+        // 認証されたユーザーだけがコメントを追加できる
+        allow create: if request.auth != null && request.resource.data.keys().hasAll(['username', 'content', 'timestamp', 'likes', 'dislikes', 'userId'])
+                      && request.resource.data.likes == 0
+                      && request.resource.data.dislikes == 0
+                      && request.resource.data.userId == request.auth.uid;
+
+        // 自分のコメントのみ編集可能
+        allow update: if request.auth != null 
+                      && request.auth.uid == resource.data.userId
+                      && request.resource.data.userId == resource.data.userId; // これは、ユーザーIDが変更されないことを保証するための条件です
+      }
+    }
+  }
+}
+

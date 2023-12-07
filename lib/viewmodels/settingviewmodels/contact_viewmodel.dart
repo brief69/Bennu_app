@@ -25,7 +25,9 @@ class ContactViewModel extends ChangeNotifier {
   }
 
   void contactViaTwitter() async {
+    // ignore: deprecated_member_use
     if (await canLaunch(twitterUrl)) {
+      // ignore: deprecated_member_use
       await launch(twitterUrl);
     } else {
       // エラーハンドリング（適切なエラーメッセージの表示やログの記録など）
