@@ -1,9 +1,9 @@
 
 
 // incart_button_widget.dart
-import 'package:bennu_app/models/homewidgetmodels/media_model.dart';
-import 'package:bennu_app/viewmodels/home_viewmodel.dart';
-import 'package:bennu_app/viewmodels/media_viewmodel.dart';
+import 'package:bennu/models/homewidgetmodels/media_model.dart';
+import 'package:bennu/viewmodels/home_viewmodel.dart';
+import 'package:bennu/viewmodels/media_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../viewmodels/cart_viewmodel.dart';

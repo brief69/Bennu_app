@@ -1,8 +1,5 @@
-
-
-// media_item_view.dart
-import 'package:bennu_app/widgets/actionwidgets/berry_pay_widget.dart';
-import 'package:bennu_app/widgets/homebuttonwidgets/like_button_widget.dart';
+import 'package:bennu/widgets/actionwidgets/berry_pay_widget.dart';
+import 'package:bennu/widgets/homebuttonwidgets/like_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';

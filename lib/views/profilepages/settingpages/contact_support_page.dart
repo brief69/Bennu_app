@@ -1,31 +1,18 @@
-
-
-// contact_support_page.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../viewmodels/settingviewmodels/contact_viewmodel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:bennu/viewmodels/settingviewmodels/contact_viewmodel.dart';
 
+final contactViewModelProvider = ChangeNotifierProvider<ContactViewModel>((ref) => ContactViewModel());
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class ContactPage extends ConsumerWidget {
+  ContactPage({Key? key}) : super(key: key);
 
-  @override
-  ContactPageState createState() => ContactPageState();
-}
-
-class ContactPageState extends State<ContactPage> {
   final contactController = TextEditingController();
 
   @override
-  void dispose() {
-    contactController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    var viewModel = Provider.of<ContactViewModel>(context, listen: false);
+    final viewModel = ref.watch(contactViewModelProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('Contacts', style: theme.textTheme.titleLarge),

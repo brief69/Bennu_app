@@ -1,6 +1,3 @@
-
-
-// user.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
@@ -42,14 +39,11 @@ class User {
   }
 
   get email => null;
-
   get publicKey => null;
-
   get name => null;
-
   get state => null;
 
-  // ... other properties and methods ...
+  get profileImageUrl => null;
 
   Future<bool> deleteCurrentUser() async {
     // implementation to delete the current user

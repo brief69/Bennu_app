@@ -1,11 +1,8 @@
-
-
-// bell_viewmodel.dart
-import 'package:bennu_app/providers/firebase_notification_service_provider.dart';
+import 'package:bennu/providers/firebase_notification_service_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../services/firebase_notification_service.dart';
 // ignore: library_prefixes
-import 'package:bennu_app/models/notification.dart' as modelNotification;
+import 'package:bennu/models/notification.dart' as modelNotification;
 
 
 class BellTabViewModel {

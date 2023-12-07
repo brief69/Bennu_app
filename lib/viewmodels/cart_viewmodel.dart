@@ -1,7 +1,7 @@
 
 
 // vart_viewmodel.dart
-import 'package:bennu_app/models/homewidgetmodels/media_model.dart';
+import 'package:bennu/models/homewidgetmodels/media_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 

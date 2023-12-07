@@ -1,6 +1,3 @@
-
-
-// share_button_widget.dart
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -32,9 +29,3 @@ class ShareWidget extends StatelessWidget {
     );
   }
 }
-
-// 以下のように使う
-// ShareWidget(
-  // textToShare: 'ここに共有したいテキストを入力します',
-  // subject: '任意のサブジェクトを入力することもできます',
-// )

@@ -1,10 +1,6 @@
-
-
-// edit_profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../viewmodels/profile_viewmodel.dart';
+import '/viewmodels/profile_viewmodel.dart';
 
 class EditProfilePage extends StatelessWidget {
   // コンストラクタ
@@ -26,6 +22,7 @@ class EditProfilePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
+                  const SizedBox(height: 15), // ユーザー名を編集するテキストフィールドの位置を下に移動
                   // ユーザー名を編集するテキストフィールド
                   TextField(
                     controller: usernameController,
@@ -35,14 +32,16 @@ class EditProfilePage extends StatelessWidget {
                   // プロフィールの変更を保存するためのボタン
                   ElevatedButton(
                     onPressed: () async {
+                      // 現在の画面のBuildContextを保存
+                      BuildContext currentContext = context;
                       // プロフィールの変更を保存
-                      await viewModel.saveProfileChanges();
+                      await viewModel.saveProfileChanges().then((_) {
                       // 現在の画面を閉じる
-                      // ignore: use_build_context_synchronously
-                      Navigator.of(context).pop();
+                      Navigator.of(currentContext).pop();
+                      });
                     },
-                    child: const Text("OK"),
-                  ),
+                    child: const Text("OK", style: TextStyle(color: Colors.white)),
+                  )
                 ],
               ),
             ),

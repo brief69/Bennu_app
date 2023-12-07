@@ -1,6 +1,3 @@
-
-
-// relay_model.dart
 class Node {
   final String id;
   final String status;
@@ -16,6 +13,7 @@ class Edge {
 
   Edge(this.startNode, this.endNode, this.duration);
 
-  get data => null;
+  // ignore: recursive_getters
+  get data => data;
 }
 

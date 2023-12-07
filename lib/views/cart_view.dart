@@ -1,65 +1,61 @@
-
-// cart_view.dart
-import 'package:bennu_app/widgets/actionwidgets/counter_widget.dart';
+import 'package:bennu/widgets/actionwidgets/counter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../viewmodels/cart_viewmodel.dart';
-import '../viewmodels/media_viewmodel.dart';
-import '../widgets/actionwidgets/berry_pay_widget.dart';
-import '../widgets/grid_view_widget.dart';
-import '../widgets/homebuttonwidgets/buy_button_widget.dart';
+import 'package:bennu/viewmodels/cart_viewmodel.dart';
+import 'package:bennu/viewmodels/media_viewmodel.dart';
+import 'package:bennu/widgets/actionwidgets/berry_pay_widget.dart';
+import 'package:bennu/widgets/grid_view_widget.dart';
+import 'package:bennu/widgets/homebuttonwidgets/buy_button_widget.dart';
 
-class CartView extends ConsumerWidget {
-  const CartView({super.key});
+class CartView extends ConsumerWidget { // カートビュークラス（ConsumerWidgetを継承）
+  const CartView({super.key}); // コンストラクタ
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cartItems = ref.watch(cartProvider);
-    final theme = Theme.of(context);
+  Widget build(BuildContext context, WidgetRef ref) { // ビルドメソッド
+    final cartItems = ref.watch(cartProvider); // カート内のアイテムを監視
+    final theme = Theme.of(context); // テーマデータの取得
 
     // 合計金額の計算
     String totalPrice = "¥${cartItems.fold(0, (total, item) => total + item.price).toStringAsFixed(2)}";
 
-    UserProfile receiverProfile = UserProfile(
+    UserProfile receiverProfile = UserProfile( // 受信者プロファイルの作成
       solanaAddress: "受信者のSolanaアドレス",
       username: "受信者のユーザー名"
     );
-    UserProfile senderProfile = UserProfile(
+    UserProfile senderProfile = UserProfile( // 送信者プロファイルの作成
       solanaAddress: "送信者のSolanaアドレス",
       username: "送信者のユーザー名"
     );
     
-    return Scaffold(
-      appBar: AppBar(
+    return Scaffold( // スカフォールドの返却
+      appBar: AppBar( // アプリバーの設定
         // TODO: #40 // delvery_widget.dartを配置
-        backgroundColor: theme.appBarTheme.backgroundColor,
+        backgroundColor: theme.appBarTheme.backgroundColor, // アプリバーの背景色の設定
       ),
-      body: GridViewWidget(
+      body: GridViewWidget( // ボディにグリッドビューウィジェットを配置
         mediaList: cartItems.map((item) => MediaViewModel(item)).toList(), // カート内の商品リストをMediaViewModelに変換
-        pageType: PageType.cart,
-        customItemBuilder: (mediaItem) => Column(
+        pageType: PageType.cart, // ページタイプの設定
+        customItemBuilder: (mediaItem) => Column( // カスタムアイテムビルダーの設定
           children: [
-            // TODO: #47 各グリッドのメディア、価格、個数のUI配置
-            Text(mediaItem.caption),
-            CountWidget(
+            CountWidget( // カウントウィジェットの表示
               mediaItem: mediaItem, 
               currentCount: 1, 
               maxCount: 10,
-              onCountChanged: (int value) {
-                ref.read(cartProvider.notifier).updateItemCount(mediaItem.id, value);
+              onCountChanged: (int value) { // カウントが変更されたときの処理
+                ref.read(cartProvider.notifier).updateItemCount(mediaItem.id, value); // アイテムカウントの更新
               },
             ),
-            Text('Price: ¥${mediaItem.price.toStringAsFixed(2)}'),
+            Text('Price: ¥${mediaItem.price.toStringAsFixed(2)}'), // 価格の表示
           ],
         ),
       
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: BuyButton(
-          price: totalPrice,
-          isExtendedByDefault: true, 
-          receiverProfile: receiverProfile,
-          senderProfile: senderProfile,
+      bottomNavigationBar: Padding( // ボトムナビゲーションバーの設定
+        padding: const EdgeInsets.all(8.0), // パディングの設定
+        child: BuyButton( // 購入ボタンの配置
+          price: totalPrice, // 価格の設定
+          isExtendedByDefault: true, // デフォルトで拡張されているかの設定
+          receiverProfile: receiverProfile, // 受信者プロファイルの設定
+          senderProfile: senderProfile, // 送信者プロファイルの設定
         ),
       ), 
       )

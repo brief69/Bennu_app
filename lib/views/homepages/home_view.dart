@@ -1,10 +1,7 @@
-
-
-// home_view.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../viewmodels/home_viewmodel.dart';
-import '../../widgets/bell_tab_widget.dart';
+import 'package:bennu/viewmodels/home_viewmodel.dart';
+import 'package:bennu/widgets/bell_tab_widget.dart';
 import 'media_item_view.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -40,9 +37,9 @@ class HomeViewState extends ConsumerState<HomeView> with TickerProviderStateMixi
             child: TabBarView(
               controller: _tabController,
               children: [
-                MediaReel(viewModels: mediaViewModels), // おすすめタブのコンテンツ
-                // 他のタブのコンテンツ
-                const BellTabWidget(), // 通知タブのコンテンツ
+                MediaReel(viewModels: mediaViewModels),
+                MediaReel(viewModels: mediaViewModels),
+                const BellTabWidget(),
               ],
             ),
           ),
@@ -54,7 +51,7 @@ class HomeViewState extends ConsumerState<HomeView> with TickerProviderStateMixi
               color: Colors.transparent,
               child: TabBar(
                 controller: _tabController,
-                indicatorColor: Colors.white,
+                indicatorColor: Colors.transparent,
                   tabs: const [
                     Tab(text: 'おすすめ'),
                     Tab(text: 'フォロー'),

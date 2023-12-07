@@ -1,7 +1,3 @@
-
-
-
-// search_viewmodel.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +14,8 @@ class SearchViewModel extends StateNotifier<SearchResult> {
   Future<List<T>> _fetchFromFirestore<T>(String collection, String query, T Function(Map<String, dynamic>) fromMap) async {
     final firestore = FirebaseFirestore.instance;
     final results = await firestore.collection(collection).where('name', isEqualTo: query).get();
-    return results.docs.map((doc) => fromMap(doc.data())).toList();
+    var list = results.docs.map((doc) => fromMap(doc.data())).toList();
+    return list.isEmpty ? [] : list;
   }
 
   Future<void> fetchSearchResults(String query) async {

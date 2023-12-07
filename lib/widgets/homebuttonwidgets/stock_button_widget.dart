@@ -1,7 +1,6 @@
 
-
-// stock_button_widget.dart
 import 'package:flutter/material.dart';
+
 
 class StockWidget extends StatelessWidget {
   final int stockCount; // 在庫数

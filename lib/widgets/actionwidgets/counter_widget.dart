@@ -1,14 +1,13 @@
-
-
-// counter_widget.dart
-import 'package:bennu_app/viewmodels/media_viewmodel.dart';
 import 'package:flutter/material.dart';
+import '/viewmodels/media_viewmodel.dart';
 
+// カウントウィジェットクラス
 class CountWidget extends StatefulWidget {
-  final int currentCount;
-  final int maxCount;
-  final ValueChanged<int> onCountChanged;
+  final int currentCount; // 現在のカウント
+  final int maxCount; // 最大カウント
+  final ValueChanged<int> onCountChanged; // カウント変更時のコールバック
 
+  // コンストラクタ
   const CountWidget({
     Key? key,
     required this.currentCount,
@@ -16,19 +15,23 @@ class CountWidget extends StatefulWidget {
     required this.onCountChanged, required MediaViewModel mediaItem,
   }) : super(key: key);
 
+  // 状態オブジェクトを生成
   @override
   CountWidgetState createState() => CountWidgetState();
 }
 
+// カウントウィジェットの状態クラス
 class CountWidgetState extends State<CountWidget> {
-  late int currentCount;
+  late int currentCount; // 現在のカウント
 
+  // 初期化処理
   @override
   void initState() {
     super.initState();
     currentCount = widget.currentCount;
   }
 
+  // カウントを増やす
   void _incrementCount() {
     if (currentCount < widget.maxCount) {
       setState(() {
@@ -38,6 +41,7 @@ class CountWidgetState extends State<CountWidget> {
     }
   }
 
+  // カウントを減らす
   void _decrementCount() {
     if (currentCount > 0) {
       setState(() {
@@ -47,6 +51,7 @@ class CountWidgetState extends State<CountWidget> {
     }
   }
 
+  // ウィジェットを描画
   @override
   Widget build(BuildContext context) {
     return Row(

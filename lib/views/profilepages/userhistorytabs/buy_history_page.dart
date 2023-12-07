@@ -1,16 +1,6 @@
-
-
-// buy_history_tab.dart
-// ユーザーの購入履歴を表示するページ
-
-// 上部にはbalance_widget.dartが配置されており、これは最終的な現在のユーザーの最新の残高を表示示す。
-// その下にgrid_view_widget.dartで購入履歴を表示
-// // グリッドビュー時に表示するデータは、
-// 動画、いくらで購入したのか、いつ購入したのかのタイムスタンプ
-
-import 'package:bennu_app/viewmodels/media_viewmodel.dart';
-import 'package:bennu_app/widgets/grid_view_widget.dart';
-import 'package:bennu_app/widgets/profile_widget.dart/balance_widget.dart';
+import 'package:bennu/viewmodels/media_viewmodel.dart';
+import 'package:bennu/widgets/grid_view_widget.dart';
+import 'package:bennu/widgets/profile_widget.dart/balance_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -40,7 +30,7 @@ class BuyHistoryTab extends StatelessWidget {
                   pageType: PageType.purchase,
                   customItemBuilder: (mediaItem) => Column(
                     children: [
-                      Text('Price: \$${mediaItem.purchasePrice}'), // 価格を表示
+                      Text('Price: \$${mediaItem.media.price}'), // 価格を表示
                       Text('Purchased: ${DateFormat('yyyy-MM-dd').format(mediaItem.purchaseDate)}'), // 日付を表示
                     ],
                   ),

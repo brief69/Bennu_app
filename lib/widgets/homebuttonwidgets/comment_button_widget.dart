@@ -1,8 +1,5 @@
-
-
-// comment_button_widget.dart
 import 'package:flutter/material.dart';
-import '../../models/homewidgetmodels/comments.dart';
+import '/models/homewidgetmodels/comments.dart';
 
 
 class CommentWidget extends StatelessWidget {
@@ -67,7 +64,3 @@ class CommentWidget extends StatelessWidget {
     );
   }
 }
-
-// CommentWidgetはCommentsPage内でコメントの表示に使用されるコンポーネント。
-// CommentWidgetでは、コメントに関連する詳細
-// （ユーザー名、コメント内容、いいね数、など）を表示するためのUIを提供している。

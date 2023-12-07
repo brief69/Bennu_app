@@ -1,15 +1,17 @@
 
 // post_button_widget.dart
+import 'package:bennu/viewmodels/post_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:bennu_app/widgets/postbuttonwidgets/button_style.dart';
+import 'package:bennu/widgets/postbuttonwidgets/button_style.dart';
+
 
 class PostButton extends ConsumerWidget {
-  const PostButton({super.key});
+  const PostButton({super.key, Function()? onPressed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final postViewModel = ref.read(postViewModelProvider.notifier);
+    final postViewModel = ref.watch(postViewModelProvider.notifier);
 
     return SizedBox(
       width: 200,

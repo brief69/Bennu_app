@@ -1,10 +1,8 @@
-
-
-// token_service.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:solana/solana.dart';
-import '../models/berry_token.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '/models/berry_token.dart';
+
 
 Future<void> mintBerryToken(DocumentSnapshot<Map<String, dynamic>> post) async {
   const storage = FlutterSecureStorage();

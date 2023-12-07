@@ -1,6 +1,3 @@
-
-
-// balance_model.dart
 class BalanceModel {
   double balanceInSolana;
   double balanceInYen;

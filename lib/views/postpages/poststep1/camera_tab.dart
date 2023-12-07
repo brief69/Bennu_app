@@ -1,14 +1,11 @@
-
-
-// camera_tab.dart
-import 'package:bennu_app/views/postpages/poststep2/video_editor_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-// ignore: depend_on_referenced_packages
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:io';
+import '/views/postpages/poststep2/video_editor_interface.dart';
 
+// カメラタブのウィジェットを定義するクラス
 class CameraTab extends StatefulWidget {
   const CameraTab({super.key});
 
@@ -16,6 +13,7 @@ class CameraTab extends StatefulWidget {
   CameraTabState createState() => CameraTabState();
 }
 
+// カメラタブの状態を管理するクラス
 class CameraTabState extends State<CameraTab> {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
@@ -28,6 +26,7 @@ class CameraTabState extends State<CameraTab> {
     _initializeCamera();
   }
 
+  // カメラを初期化するメソッド
   Future<void> _initializeCamera() async {
     _cameras = await availableCameras();
     if (_cameras!.isNotEmpty) {
@@ -48,6 +47,7 @@ class CameraTabState extends State<CameraTab> {
     }
   }
 
+  // ビデオ録画を開始するメソッド
   Future<void> _startVideoRecording() async {
     if (!_controller!.value.isInitialized) {
       return;
@@ -62,6 +62,7 @@ class CameraTabState extends State<CameraTab> {
     await _controller!.startVideoRecording();
     }
 
+  // ビデオ録画を停止するメソッド
   Future<void> _stopVideoRecording() async {
     if (!_controller!.value.isRecordingVideo) {
       return;
@@ -71,6 +72,7 @@ class CameraTabState extends State<CameraTab> {
     _navigateToVideoEditor(_videoPath!);
   }
 
+  // ビデオエディタに遷移するメソッド
   void _navigateToVideoEditor(String videoPath) {
     Navigator.push(
       context,
@@ -93,11 +95,20 @@ class CameraTabState extends State<CameraTab> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent, // AppBarを透明に設定
+        elevation: 0, // 影をなくす
+        leading: IconButton(
+          icon: const Icon(Icons.close), // バツボタン
+          onPressed: () {
+            Navigator.pop(context); // PostTabModalを閉じる
+          }
+        )
+      ),
       body: Stack(
         children: [
           CameraPreview(_controller!),
-          // Place any other widgets you want on top of the camera preview here
-          // For example, a button to start and stop video recording
+          
         ],
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,7 +1,4 @@
-
-
-// delete_account_viewmodel.dart
-import '../../models/user.dart';
+import '/models/user.dart';
 
 class DeleteAccountViewModel {
   final _userModel = 

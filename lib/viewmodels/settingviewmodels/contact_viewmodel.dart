@@ -1,9 +1,9 @@
-
-
-// contact_viewmodel.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final contactViewModelProvider = ChangeNotifierProvider<ContactViewModel>((ref) => ContactViewModel());
 
 class ContactViewModel extends ChangeNotifier {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -24,14 +24,12 @@ class ContactViewModel extends ChangeNotifier {
     }
   }
 
-  void contactViaTwitter() {
-    // ignore: deprecated_member_use
-    canLaunch(twitterUrl).then((canLaunchUrl) {
-      if (canLaunchUrl) {
-        // ignore: deprecated_member_use
-        launch(twitterUrl);
-      } else {
-      }
-    });
+  void contactViaTwitter() async {
+    if (await canLaunch(twitterUrl)) {
+      await launch(twitterUrl);
+    } else {
+      // エラーハンドリング（適切なエラーメッセージの表示やログの記録など）
+    }
   }
 }
+

@@ -1,11 +1,7 @@
-
-
-// user_manager.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../models/user.dart';
 import 'current_user_provider.dart';
+import '/models/user.dart';
 
 // Firestoreからユーザー情報を取得する関数
 Future<Map<String, dynamic>> fetchUserDetails(String userId) async {

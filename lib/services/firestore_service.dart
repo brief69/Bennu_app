@@ -1,20 +1,19 @@
-
-
-// firestore_service.dart
-import 'package:bennu_app/models/homewidgetmodels/comments.dart';
-import 'package:bennu_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '/models/homewidgetmodels/media_model.dart';
+import '/models/user.dart';
 
-import '../models/currency.dart';
-import '../models/homewidgetmodels/media_model.dart';
-
+// Firestoreサービスクラス
 class FirestoreService {
+  // ユーザーコレクションへの参照
   final _usersCollection = FirebaseFirestore.instance.collection('users');
   
+  // データベースへの参照（未定義）
   get db => '';
   
+  // キャプションへの参照（未定義）
   get caption => null;
 
+  // ユーザー情報をFirestoreに保存する関数
   Future<void> storeUser(User user) async {
     await _usersCollection.doc(user.id).set({
       'email': user.email,
@@ -22,14 +21,14 @@ class FirestoreService {
     });
   }
 
+  // 新しい投稿をFirestoreに保存する関数
   Future<void> createPost({
     required String userId,
     required String videoUrl,
     required String caption,
     required double price,
     required int stock,
-    required Currency currency,
-     // その他必要なデータを引数として追加
+    required bool isPriceInBerry,
   }) async {
     final post = {
       'userId': userId,
@@ -37,53 +36,23 @@ class FirestoreService {
       'caption': caption,
       'price': price,
       'stock': stock,
-      'currency': currency.toString(),
-      'timestamp': FieldValue.serverTimestamp(), // Use server timestamp
+      'isPriceInBerry': isPriceInBerry,
+      'timestamp': FieldValue.serverTimestamp(), // サーバータイムスタンプを使用
       // その他のフィールドを追加
     };
     await db.collection('posts').add(post);
   }
 
+  // ユーザーの「いいね」を取得する関数（未定義）
   fetchUserLikes(id) {}
 
+  // ユーザーの購入を取得する関数（未定義）
   fetchUserBuys(id) {}
 }
 
-// comments
-Future<List<Comment>> fetchComments(String videoID) async {
-  final commentsCollection = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments');
-  final snapshot = await commentsCollection.orderBy('timestamp', descending: true).get();
 
-  return snapshot.docs.map((doc) => Comment(
-    username: doc['username'],
-    content: doc['content'],
-    timestamp: (doc['timestamp'] as Timestamp).toDate(),
-    likes: doc['likes'],
-    dislikes: doc['dislikes'],
-  )).toList();
-}
-
-Future<void> addComment(String videoID, Comment comment) async {
-  final commentsCollection = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments');
-  await commentsCollection.add({
-    'username': comment.username,
-    'content': comment.content,
-    'timestamp': FieldValue.serverTimestamp(),
-    'likes': 0,
-    'dislikes': 0,
-  });
-}
-Future<void> updateLikes(String videoID, String commentID, int newLikes) async {
-  final commentDoc = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments').doc(commentID);
-  await commentDoc.update({'likes': newLikes});
-}
-
-Future<void> updateDislikes(String videoID, String commentID, int newDislikes) async {
-  final commentDoc = FirebaseFirestore.instance.collection('videos').doc(videoID).collection('comments').doc(commentID);
-  await commentDoc.update({'dislikes': newDislikes});
-}
-
-// profile history
+// // プロフィール履歴関連の関数 // //
+// ユーザーの投稿を取得する関数
 Future<List> fetchUserPosts(String userId) async {
     final userPostsCollection = FirebaseFirestore.instance.collection('posts');
     final snapshot = await userPostsCollection.where('userId', isEqualTo: userId).get();
@@ -91,6 +60,7 @@ Future<List> fetchUserPosts(String userId) async {
     return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
   }
 
+  // ユーザーの「いいね」を取得する関数
   Future<List> fetchUserLikes(String userId) async {
     final userLikesCollection = FirebaseFirestore.instance.collection('likes');
     final snapshot = await userLikesCollection.where('userId', isEqualTo: userId).get();
@@ -98,6 +68,7 @@ Future<List> fetchUserPosts(String userId) async {
     return snapshot.docs.map((doc) => MediaModel.fromMap(doc.data())).toList();
   }
 
+  // ユーザーの購入を取得する関数
   Future<List> fetchUserBuys(String userId) async {
     final userBuysCollection = FirebaseFirestore.instance.collection('purchases');
     final snapshot = await userBuysCollection.where('userId', isEqualTo: userId).get();

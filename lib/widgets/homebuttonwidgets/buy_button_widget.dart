@@ -1,12 +1,7 @@
-
-
-// buy_button_widget.dart
 import 'dart:async';
-import 'package:bennu_app/widgets/actionwidgets/pay_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../actionwidgets/berry_pay_widget.dart';
-
+import '/widgets/actionwidgets/berry_pay_widget.dart';
+import '/widgets/actionwidgets/pay_widget.dart';
 
 
 class BuyButton extends StatefulWidget {
@@ -117,5 +112,4 @@ class BuyButtonState extends State<BuyButton> with SingleTickerProviderStateMixi
     }
     super.dispose();
   }
-
 }

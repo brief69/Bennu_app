@@ -1,8 +1,5 @@
-
-
-// logout_viewmodels
 import 'package:flutter/foundation.dart';
-import '../../models/settingmodels/logout_model.dart';
+import '/models/settingmodels/logout_model.dart';
 
 
 class LogoutViewModel extends ChangeNotifier {

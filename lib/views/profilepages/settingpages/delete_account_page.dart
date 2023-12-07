@@ -1,9 +1,5 @@
-
-
-// delete_account_page.dartの中身
-
 import 'package:flutter/material.dart';
-import '../../../viewmodels/settingviewmodels/delete_account_viewmodel.dart';
+import '/viewmodels/settingviewmodels/delete_account_viewmodel.dart';
 
 
 class DeleteAccountPage extends StatefulWidget {

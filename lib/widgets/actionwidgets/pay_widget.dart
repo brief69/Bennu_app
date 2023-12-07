@@ -1,12 +1,9 @@
-
-
-// pay_widget.dart
 import 'dart:io';
-import 'package:bennu_app/widgets/actionwidgets/berry_pay_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../providers/pay_provider.dart';
-import '../../viewmodels/widgetsviewmodels/price_viewmodel.dart';
+import '/providers/pay_provider.dart';
+import '/viewmodels/widgetsviewmodels/price_viewmodel.dart';
+import '/widgets/actionwidgets/berry_pay_widget.dart';
 
 
 class PayWidget extends ConsumerWidget {

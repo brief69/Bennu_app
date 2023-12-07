@@ -1,6 +1,3 @@
-
-
-// other_viewmodel.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,6 +20,4 @@ class OtherViewModel extends ChangeNotifier {
     }
     notifyListeners(); // 必要に応じてリスナーに通知
   }
-
-  // 他のビジネスロジック
 }

@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:firebase_messaging/firebase_messaging.dart';
 // ignore: library_prefixes
-import 'package:bennu_app/models/notification.dart' as modelNotification;
+import 'package:bennu/models/notification.dart' as modelNotification;
 
 class FirebaseNotificationService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;

@@ -38,6 +38,8 @@ class Post {
     required this.transactionHistory,
   });
 
+  Object? get userId => null;
+
   Map<String, dynamic> toMap() {
     return {
       'caption': caption,
@@ -78,7 +80,10 @@ class Post {
     );
   }
 
-  static fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> doc) {}
+  static fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {}
+  static Post fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
+    return Post.fromFirestore(doc);
+  }
 }
 
 

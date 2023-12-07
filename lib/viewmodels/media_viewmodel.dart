@@ -1,6 +1,3 @@
-
-
-// media_viewmodel.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/homewidgetmodels/media_model.dart';
 
@@ -25,22 +22,20 @@ class MediaViewModel {
         mediaItems: doc['mediaItems'], 
         postId: '', 
         userId: '',
-        firestore: FirebaseFirestore.instance, 
+        firestore: FirebaseFirestore.instance,
       );
 
     MediaViewModel(this.media);
 
-  // 既存のプロパティのゲッター
-  String get videoUrl => media.videoUrl;
-  String get userIcon => media.userIcon;
-  int get likes => media.likes;
-  String get caption => '';
-
-  get purchasePrice => null;
-
-  get purchaseDate => null;
-
-  get price => null;
-
-  get id => null;
+    String get videoUrl => media.videoUrl;
+    String get userIcon => media.userIcon;
+    int get likes => media.likes;
+    String get caption => media.caption;
+    int get stock => media.stock;
+    int get price => media.price;
+    String get postId => media.postId;
+    String get userId => media.userId;
+    String get id => userId;
+    // ignore: recursive_getters
+    DateTime get purchaseDate => purchaseDate;
 }

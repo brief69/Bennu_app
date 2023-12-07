@@ -1,8 +1,3 @@
-
-
-
-// registration_viewmodel.dart
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../services/auth_service.dart';

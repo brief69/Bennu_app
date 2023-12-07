@@ -1,11 +1,7 @@
-
-
-// logout_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../models/settingmodels/logout_model.dart';
-import '../../../viewmodels/settingviewmodels/logout_viewmodel.dart';
-
+import '/models/settingmodels/logout_model.dart';
+import '/viewmodels/settingviewmodels/logout_viewmodel.dart';
 
 class LogoutPage extends StatelessWidget {
   const LogoutPage({Key? key}) : super(key: key);
