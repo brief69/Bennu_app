@@ -1,0 +1,29 @@
+{
+  "name": "bennu_app",
+  "version": "1.0.0",
+  "description": "DMS (Distributed Market Share)",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brief69/dms.git"
+  },
+  "keywords": [
+    "flutter",
+    "web",
+    "app",
+    "shopping",
+    "sns"
+  ],
+  "author": "Brief",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brief69/dms/issues"
+  },
+  "homepage": "https://github.com/brief69/dms#readme"
+}

@@ -82,6 +82,7 @@ class RelayWidget extends ConsumerWidget {
 }
 
 // 描画方向を定義します。
+// ignore: constant_identifier_names
 enum DrawingDirection { Right, DownRight, DownLeft, Left }
 
 // リレーペインターを定義します。
