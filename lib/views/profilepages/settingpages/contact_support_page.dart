@@ -44,13 +44,13 @@ class ContactPage extends ConsumerWidget {
                   // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 },
-                child: const Text('送信'),
+                child: const Text('送信', style: TextStyle(color: Colors.white)),
               ),
             ),
             Center(
               child: ElevatedButton(
                 onPressed: viewModel.contactViaTwitter,
-                child: const Text('Twitterで問い合わせる'),
+                child: const Text('Twitterで問い合わせる', style: TextStyle(color: Colors.white)),
               ),
             )
           ],

@@ -1,3 +1,4 @@
+import 'package:bennu/widgets/delivery_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/viewmodels/cart_viewmodel.dart';
@@ -30,7 +31,7 @@ class CartView extends ConsumerWidget { // カートビュークラス（Consume
     
     return Scaffold( // スカフォールドの返却
       appBar: AppBar( // アプリバーの設定
-        // TODO: #40 // delvery_wid
+        title: const DeliveryWidget(),
         backgroundColor: theme.appBarTheme.backgroundColor, // アプリバーの背景色の設定
       ),
       body: GridViewWidget( // ボディにグリッドビューウィジェットを配置
@@ -49,17 +50,19 @@ class CartView extends ConsumerWidget { // カートビュークラス（Consume
             Text('Price: ¥${mediaItem.price.toStringAsFixed(2)}'), // 価格の表示
           ],
         ),
-      
-      bottomNavigationBar: Padding( // ボトムナビゲーションバーの設定
-        padding: const EdgeInsets.all(8.0), // パディングの設定
-        child: BuyButton( // 購入ボタンの配置
-          price: totalPrice, // 価格の設定
-          isExtendedByDefault: true, // デフォルトで拡張されているかの設定
-          receiverProfile: receiverProfile, // 受信者プロファイルの設定
-          senderProfile: senderProfile, // 送信者プロファイルの設定
+      ),
+      bottomNavigationBar: Visibility( // Visibilityウィジェットを使用して購入ボタンの表示/非表示を制御
+        visible: cartItems.isNotEmpty, // カートにアイテムがある場合のみ表示
+        child: Padding( // ボトムナビゲーションバーの設定
+          padding: const EdgeInsets.all(8.0), // パディングの設定
+          child: BuyButton( // 購入ボタンの配置
+            price: totalPrice, // 価格の設定
+            isExtendedByDefault: true, // デフォルトで拡張されているかの設定
+            receiverProfile: receiverProfile, // 受信者プロファイルの設定
+            senderProfile: senderProfile, // 送信者プロファイルの設定
+          ),
         ),
-      ), 
-      )
+      ),
     );
   }
 }

@@ -72,7 +72,15 @@ class BerryPayment extends ConsumerWidget { // BerryPaymentウィジェットク
               foregroundColor: Colors.white, // 前景色を白に設定
               backgroundColor: Colors.green, // 背景色を緑に設定
             ),
-            onPressed: () => viewModel.sendPayment(), // ボタンが押されたときに支払いを送信
+            onPressed: () async {
+              await viewModel.when(
+                data: (data) async {
+                  await data.sendPayment();
+                },
+                loading: () async {},
+                error: (_, __) async {},
+              );
+            },
             child: const Text('Pay', style: TextStyle(fontFamily: 'Roboto')), // ボタンのテキストを設定
           ),
           // Show current balance

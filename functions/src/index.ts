@@ -18,11 +18,11 @@ import * as logger from "firebase-functions/logger";
 //   response.send("Hello from Firebase!");
 // });
 // index.ts
-import * as functions from 'firebase-functions';
-import { scheduledFunction } from './updateExchangeRates';
+import * as functions from "firebase-functions";
+import {scheduledFunction} from "./updateExchangeRates";
 
 // 他のFunctionsのエクスポートもここに含まれる
-export { scheduledFunction };
+export {scheduledFunction};
 
 // デプロイコマンド
 // firebase deploy --only functions
