@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/viewmodels/widgetsviewmodels/price_viewmodel.dart';
 
-
 // 価格を表示するウィジェット
 class PriceWidget extends ConsumerWidget {
   //final int priceInYen; // 価格(円)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// CaptionButtonWidgetは、キャプションを表示するウィジェットです。
+// CaptionButtonWidgetは、キャプションを表示するウィジェット。
 class CaptionButtonWidget extends StatelessWidget {
   final String caption; // キャプションのテキスト
 

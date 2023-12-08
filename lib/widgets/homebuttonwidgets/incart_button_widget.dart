@@ -1,6 +1,3 @@
-
-
-// incart_button_widget.dart
 import 'package:bennu/models/homewidgetmodels/media_model.dart';
 import 'package:bennu/viewmodels/home_viewmodel.dart';
 import 'package:bennu/viewmodels/media_viewmodel.dart';
@@ -14,7 +11,7 @@ class InCartWidget extends StatefulWidget {
   final int stock;
   final int initialInCart;
 
-  const InCartWidget({
+  const InCartWidget({ // コンストラクタを定義します。
     Key? key,
     required this.productId,
     required this.stock,
@@ -22,58 +19,58 @@ class InCartWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  InCartWidgetState createState() => InCartWidgetState();
+  InCartWidgetState createState() => InCartWidgetState(); // 状態を管理するクラスを作成します。
 }
 
-class InCartWidgetState extends State<InCartWidget> {
-  bool isExpanded = false;
-  late int inCart;
+class InCartWidgetState extends State<InCartWidget> { // InCartWidgetの状態を管理するクラスを定義します。
+  bool isExpanded = false; // ウィジェットが展開されているかどうかを管理する変数を定義します。
+  late int inCart; // カート内の数量を管理する変数を定義します。
 
   @override
-  void initState() {
+  void initState() { // 初期化メソッドを定義します。
     super.initState();
-    inCart = widget.initialInCart;
+    inCart = widget.initialInCart; // 初期化時にカート内の数量を設定します。
   }
 
-  void _toggleExpansion() {
+  void _toggleExpansion() { // ウィジェットの展開/折りたたみを切り替えるメソッドを定義します。
     setState(() {
       isExpanded = !isExpanded;
     });
   }
 
-  void _updateInCart(int newInCart, WidgetRef ref) {
+  void _updateInCart(int newInCart, WidgetRef ref) { // カート内の数量を更新するメソッドを定義します。
     setState(() {
       inCart = newInCart;
     });
     // カートの数量を更新
-    ref.read(cartProvider.notifier).updateQuantity(widget.productId, newInCart);
+    ref.read(cartProvider.notifier).updateQuantity(widget.productId, newInCart); // カートの数量を更新します。
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // ウィジェットを描画するメソッドを定義します。
     return Consumer(
       builder: (context, ref, child) {
         return GestureDetector(
-          onTap: _toggleExpansion,
+          onTap: _toggleExpansion, // タップ時にウィジェットの展開/折りたたみを切り替えます。
           child: AnimatedContainer(
-            duration: const Duration(seconds: 3),
-            curve: Curves.fastOutSlowIn,
-            width: isExpanded ? 200 : 100,
-            height: 50,
+            duration: const Duration(seconds: 3), // アニメーションの時間を設定します。
+            curve: Curves.fastOutSlowIn, // アニメーションのカーブを設定します。
+            width: isExpanded ? 200 : 100, // ウィジェットの幅を設定します。
+            height: 50, // ウィジェットの高さを設定します。
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(isExpanded ? 1 : 0.5),
-              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).primaryColor.withOpacity(isExpanded ? 1 : 0.5), // ウィジェットの色を設定します。
+              borderRadius: BorderRadius.circular(8), // ウィジェットの角を丸くします。
             ),
             child: isExpanded
                 ? CountWidget(
-                    currentCount: inCart,
-                    maxCount: widget.stock,
-                    onCountChanged: (newCount) => _updateInCart(newCount, ref), mediaItem: MediaViewModel(mediaViewModelProvider as MediaModel),
+                    currentCount: inCart, // 現在の数量を設定します。
+                    maxCount: widget.stock, // 最大数量を設定します。
+                    onCountChanged: (newCount) => _updateInCart(newCount, ref), mediaItem: MediaViewModel(mediaViewModelProvider as MediaModel), // 数量が変更されたときの処理を設定します。
                   )
                 : Center(
                     child: Text(
-                      'In Cart ($inCart)',
-                      style: const TextStyle(color: Colors.white),
+                      'In Cart ($inCart)', // カート内の数量を表示します。
+                      style: const TextStyle(color: Colors.white), // テキストのスタイルを設定します。
                     ),
                   ),
           ),
