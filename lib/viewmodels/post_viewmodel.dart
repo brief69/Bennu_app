@@ -23,6 +23,7 @@ final firestoreServiceProvider = Provider<FirestoreService>((ref) {
 });
 
 class PostViewModel extends StateNotifier<AsyncValue<List<Post>>> {
+  // ignore: deprecated_member_use
   final Reader read;
 
   PostViewModel(this.read) : super(const AsyncValue.loading());

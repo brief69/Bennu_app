@@ -17,12 +17,3 @@ import * as logger from "firebase-functions/logger";
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-// index.ts
-import * as functions from "firebase-functions";
-import {scheduledFunction} from "./updateExchangeRates";
-
-// 他のFunctionsのエクスポートもここに含まれる
-export {scheduledFunction};
-
-// デプロイコマンド
-// firebase deploy --only functions

@@ -1,15 +1,18 @@
 {
+  // コンパイラオプションを設定します
   "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2017"
+    "module": "commonjs",  // モジュールシステムとしてCommonJSを使用します
+    "noImplicitReturns": true,  // すべてのコードパスが値を返すことを強制します
+    "noUnusedLocals": true,  // 未使用のローカル変数を許可しません
+    "outDir": "lib",  // コンパイルされた出力をこのディレクトリに配置します
+    "sourceMap": true,  // ソースマップを生成します
+    "strict": true,  // 厳格な型チェックを有効にします
+    "target": "es2017"  // ECMAScriptのターゲットバージョンを設定します
   },
-  "compileOnSave": true,
+  "compileOnSave": true,  // ファイルを保存するたびにコンパイルします
+  // コンパイルに含めるファイルまたはディレクトリを指定します
   "include": [
-    "src"
+    "src",  // 'src'ディレクトリを含めます
+    ".eslintrc.js",  // '.eslintrc.js'ファイルを含めます
   ]
 }

@@ -1,0 +1,7 @@
+{
+  // Firebaseプロジェクトの設定
+  "projects": {
+    // デフォルトのプロジェクトID
+    "default": "bennu-c2cb5"
+  }
+}

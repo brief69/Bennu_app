@@ -1,3 +1,5 @@
+import 'package:bennu/views/authpages/registration_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/providers/main_page_provider.dart';
@@ -27,7 +29,18 @@ class MainPage extends ConsumerWidget { // MainPageクラスをConsumerWidgetと
     return Scaffold( // Scaffoldウィジェットを返す
       body: _children[viewModel.currentIndex], // 現在のインデックスに対応する子ウィジェットを表示
       bottomNavigationBar: BottomNavigationBar( // ボトムナビゲーションバーを定義
-        onTap: viewModel.changeIndex, // タップ時にインデックスを変更
+        onTap: (int index) {
+          if (index != 0 && FirebaseAuth.instance.currentUser == null) {
+            // ユーザーが認証されていない場合、登録/サインインページにリダイレクト
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const RegistrationView()),
+            );
+          } else {
+        // ユーザーが認証されている場合、通常のタブ切り替えロジックを実行
+            viewModel.changeIndex(index); // タップ時にインデックスを変更
+          }
+        },
         currentIndex: viewModel.currentIndex, // 現在のインデックスを取得
         type: BottomNavigationBarType.fixed, // ナビゲーションバータイプを固定に設定
         backgroundColor: Theme.of(context).bottomAppBarTheme.color, // バックグラウンドカラーを設定

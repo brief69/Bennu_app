@@ -1,6 +1,6 @@
 import 'package:bennu/viewmodels/registration_viewmodel.dart';
-import 'package:bennu/views/authpages/signin_view.dart';
 import 'package:flutter/material.dart';
+import 'signin_view.dart';
 
 // ユーザー登録画面を表示するためのウィジェット
 class RegistrationView extends StatefulWidget {
@@ -59,7 +59,7 @@ class RegistrationViewState extends State<RegistrationView> {
                 );
               },
               child: Text(
-                'Already have an account? Sign in',
+                'すでにアカウントを持っていますか? Sign In',
                 style: TextStyle(
                   color: theme.primaryColor,
                   fontWeight: FontWeight.bold,

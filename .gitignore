@@ -46,3 +46,5 @@ app.*.map.json
 # Firebase configuration files
 **/ios/Runner/GoogleService-Info.plist
 **/android/app/google-services.json
+/ios/Runner/GoogleService-Info (7).plist
+/Users/ir/bennu_app/ios/Runner/GoogleService-Info (7).plist

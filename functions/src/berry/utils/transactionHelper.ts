@@ -3,9 +3,9 @@ const db = admin.firestore();
 
 // 商品を出品する関数
 /**
- * @param {string} userId - The ID of the user listing the item
- * @param {object} itemDetails - The details of the item being listed
- * @return {Promise<string>} - The ID of the newly listed item
+ * @param {string} userId - 商品を出品するユーザーのID
+ * @param {object} itemDetails - 出品される商品の詳細
+ * @return {Promise<string>} - 新しく出品された商品のID
  */
 async function listItem(userId: string, itemDetails: object): Promise<string> {
   // 新しい商品の詳細を作成
@@ -23,8 +23,8 @@ async function listItem(userId: string, itemDetails: object): Promise<string> {
 
 // 商品を購入する関数
 /**
- * @param {string} itemId - The ID of the item being purchased
- * @param {string} buyerId - The ID of the user purchasing the item
+ * @param {string} itemId - 購入される商品のID
+ * @param {string} buyerId - 商品を購入するユーザーのID
  * @return {Promise<void>}
  */
 async function purchaseItem(itemId: string, buyerId: string): Promise<void> {
@@ -35,7 +35,7 @@ async function purchaseItem(itemId: string, buyerId: string): Promise<void> {
 
   // 商品が存在しない場合はエラーをスロー
   if (!item.exists) {
-    throw new Error("Item does not exist");
+    throw new Error("商品は存在しません");
   }
 
   // 商品のデータを取得

@@ -1,8 +1,12 @@
 {
+  // コンパイラオプションを設定します
   "compilerOptions": {
+    // 厳格な型チェックを有効にします
     "strict": true
   },
+  // コンパイルに含めるファイルまたはディレクトリを指定します
   "include": [
+    // '.eslintrc.js'ファイルを含めます
     ".eslintrc.js"
   ]
 }

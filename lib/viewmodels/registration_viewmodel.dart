@@ -13,8 +13,7 @@ class RegistrationViewModel {
   
   Future<void> registerAndCreateWallet(String email) async {
     try {
-      final userId = await _authService.registerWithEmail(email);
-
+      final userId = await _authService.registerUserWithEmail(email);
       if (userId != null) {
         final wallet = await _walletService.createRandomWallet();
         // Use flutter_secure_storage to store the private key securely
