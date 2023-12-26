@@ -1,75 +1,9 @@
-# コンパイルされたJavaScriptファイル
+# Compiled JavaScript files
 lib/**/*.js
 lib/**/*.js.map
 
-# TypeScript v1宣言ファイル
+# TypeScript v1 declaration files
 typings/
 
-# Node.js依存関係ディレクトリ
+# Node.js dependency directory
 node_modules/
-# ログ
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-firebase-debug.log*
-firebase-debug.*.log*
-
-# Firebaseキャッシュ
-.firebase/
-
-# Firebase設定
-
-# 他の人に自分のFirebaseプロジェクトを作成してもらいたい場合は、このコメントを外してください。
-# 同じFirebaseプロジェクトで作業しているチームの場合、.firebasercの同じプロジェクトに全員がデプロイできるように
-# このコメントを残すことをお勧めします。
-# .firebaserc
-
-# ランタイムデータ
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# jscoverage/JSCoverによって生成された計測用ライブラリのディレクトリ
-lib-cov
-
-# istanbulなどのツールが使用するカバレッジディレクトリ
-coverage
-
-# nycテストカバレッジ
-.nyc_output
-
-# Grunt中間ストレージ (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower依存関係ディレクトリ (https://bower.io/)
-bower_components
-
-# node-waf設定
-.lock-wscript
-
-# コンパイルされたバイナリアドオン (http://nodejs.org/api/addons.html)
-build/Release
-
-# 依存関係ディレクトリ
-node_modules/
-
-# 任意のnpmキャッシュディレクトリ
-.npm
-
-# 任意のeslintキャッシュ
-.eslintcache
-
-# 任意のREPL履歴
-.node_repl_history
-
-# 'npm pack'の出力
-*.tgz
-
-# Yarn Integrityファイル
-.yarn-integrity
-
-# dotenv環境変数ファイル
-.env
